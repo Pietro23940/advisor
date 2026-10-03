@@ -1,0 +1,83 @@
+{
+ "cpu": {
+  "amazon": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.amazon.es/dp/B0BTZB7F88",
+   "comprobado": "2026-10-03T18:01+00:00",
+   "error": "bloqueado (403)"
+  }
+ },
+ "cooler": {
+  "amazon": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.amazon.es/dp/B09NSTR7JZ",
+   "comprobado": "2026-10-03T18:01+00:00",
+   "error": "bloqueado (403)"
+  }
+ },
+ "paste": {
+  "amazon": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.amazon.es/dp/B0FT2TYMR6",
+   "comprobado": "2026-10-03T18:01+00:00",
+   "error": "bloqueado (403)"
+  }
+ },
+ "gpu": {
+  "amazon": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.amazon.es/dp/B096Y2TYKV",
+   "comprobado": "2026-10-03T18:01+00:00",
+   "error": "bloqueado (403)"
+  }
+ },
+ "ram": {
+  "amazon": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.amazon.es/dp/B0GQC6MV6C",
+   "comprobado": "2026-10-03T18:01+00:00",
+   "error": "bloqueado (403)"
+  }
+ },
+ "mb": {
+  "amazon": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.amazon.es/dp/B0DP5DQPRC",
+   "comprobado": "2026-10-03T18:01+00:00",
+   "error": "bloqueado (403)"
+  }
+ },
+ "ssd": {
+  "amazon": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.amazon.es/dp/B0DGHB9V34",
+   "comprobado": "2026-10-03T18:01+00:00",
+   "error": "bloqueado (403)"
+  }
+ },
+ "case": {
+  "amazon": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.amazon.es/dp/B0F49555MM",
+   "comprobado": "2026-10-03T18:01+00:00",
+   "error": "bloqueado (403)"
+  }
+ },
+ "psu": {
+  "amazon": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.amazon.es/dp/B0CK8NDN1Q",
+   "comprobado": "2026-10-03T18:01+00:00",
+   "error": "bloqueado (403)"
+  }
+ }
+}

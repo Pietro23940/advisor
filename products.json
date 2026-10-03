@@ -1,0 +1,25 @@
+{
+  "ajustes": {
+    "bajada_minima_pct": 1
+  },
+  "productos": [
+    {"id":"cpu","nombre":"AMD Ryzen 7 7800X3D","detalle":"Procesador AM5 · 8 núcleos · 3D V-Cache","asin":"B0BTZB7F88","objetivo":null,
+     "tiendas":{"amazon":"https://www.amazon.es/dp/B0BTZB7F88","pccomponentes":"","neobyte":"","coolmod":"","pcbox":""}},
+    {"id":"cooler","nombre":"Disipador Thermalright","detalle":"Refrigeración por aire para CPU","asin":"B09NSTR7JZ","objetivo":null,
+     "tiendas":{"amazon":"https://www.amazon.es/dp/B09NSTR7JZ","pccomponentes":"","neobyte":"","coolmod":"","pcbox":""}},
+    {"id":"paste","nombre":"ARCTIC MX-7","detalle":"Pasta térmica","asin":"B0FT2TYMR6","objetivo":null,
+     "tiendas":{"amazon":"https://www.amazon.es/dp/B0FT2TYMR6","pccomponentes":"","neobyte":"","coolmod":"","pcbox":""}},
+    {"id":"gpu","nombre":"Gigabyte GeForce RTX 3060 Gaming OC 12GB","detalle":"Tarjeta gráfica GV-N3060GAMING OC-12GD V2","asin":"B096Y2TYKV","objetivo":null,
+     "tiendas":{"amazon":"https://www.amazon.es/dp/B096Y2TYKV","pccomponentes":"","neobyte":"","coolmod":"","pcbox":""}},
+    {"id":"ram","nombre":"Corsair Vengeance 16 GB","detalle":"Memoria RAM · hasta 6000 MHz","asin":"B0GQC6MV6C","objetivo":null,
+     "tiendas":{"amazon":"https://www.amazon.es/dp/B0GQC6MV6C","pccomponentes":"","neobyte":"","coolmod":"","pcbox":""}},
+    {"id":"mb","nombre":"ASUS TUF Gaming B850-Plus WiFi","detalle":"Placa base AM5","asin":"B0DP5DQPRC","objetivo":null,
+     "tiendas":{"amazon":"https://www.amazon.es/dp/B0DP5DQPRC","pccomponentes":"","neobyte":"","coolmod":"","pcbox":""}},
+    {"id":"ssd","nombre":"Samsung NVMe 2 TB","detalle":"SSD interno MZ-V9S2T0BW","asin":"B0DGHB9V34","objetivo":null,
+     "tiendas":{"amazon":"https://www.amazon.es/dp/B0DGHB9V34","pccomponentes":"","neobyte":"","coolmod":"","pcbox":""}},
+    {"id":"case","nombre":"ANSAITE caja ATX","detalle":"Ventiladores preinstalados · lateral panorámico","asin":"B0F49555MM","objetivo":null,
+     "tiendas":{"amazon":"https://www.amazon.es/dp/B0F49555MM","pccomponentes":"","neobyte":"","coolmod":"","pcbox":""}},
+    {"id":"psu","nombre":"Corsair CX650 650W","detalle":"Fuente de alimentación","asin":"B0CK8NDN1Q","objetivo":null,
+     "tiendas":{"amazon":"https://www.amazon.es/dp/B0CK8NDN1Q","pccomponentes":"","neobyte":"","coolmod":"","pcbox":""}}
+  ]
+}
