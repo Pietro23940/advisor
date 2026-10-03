@@ -4,7 +4,35 @@
    "precio": null,
    "historial": [],
    "url": "https://www.amazon.es/dp/B0BTZB7F88",
-   "comprobado": "2026-10-03T18:29+00:00",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (200)"
+  },
+  "pccomponentes": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.pccomponentes.com/amd-ryzen-7-7800x3d-42-ghz-5-ghz",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
+  },
+  "neobyte": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.neobyte.es/amd-ryzen-7-7800x3d-procesador-am5-120094.html",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "HTTP 500"
+  },
+  "coolmod": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.coolmod.com/procesador-amd-ryzen-7-7800x3d-5-0ghz-socket-am5-boxed/",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
+  },
+  "pcbox": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.pcbox.com/procesador-amd-ryzen-7-7800x3d-4-2ghz-socket-am5/p",
+   "comprobado": "2026-10-03T18:49+00:00",
    "error": "bloqueado (200)"
   }
  },
@@ -13,8 +41,34 @@
    "precio": null,
    "historial": [],
    "url": "https://www.amazon.es/dp/B09NSTR7JZ",
-   "comprobado": "2026-10-03T18:29+00:00",
+   "comprobado": "2026-10-03T18:49+00:00",
    "error": "bloqueado (200)"
+  },
+  "pccomponentes": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.pccomponentes.com/thermalright-peerless-assassin-120-se-argb-ventilador-cpu-120mm-negro",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
+  },
+  "neobyte": {
+   "precio": 463.9,
+   "historial": [
+    [
+     "2026-10-03T18:49+00:00",
+     463.9
+    ]
+   ],
+   "url": "https://www.neobyte.es/thermalright-peerless-assassin-120-se-argb-negro-refrigeracion-cpu-17637.html",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": null
+  },
+  "coolmod": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.coolmod.com/thermalright-peerless-assassin-120-se-disipador-cpu/",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
   }
  },
  "paste": {
@@ -22,7 +76,35 @@
    "precio": null,
    "historial": [],
    "url": "https://www.amazon.es/dp/B0FT2TYMR6",
-   "comprobado": "2026-10-03T18:29+00:00",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (200)"
+  },
+  "pccomponentes": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.pccomponentes.com/pasta-termica-arctic-mx-7-8g",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
+  },
+  "neobyte": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.neobyte.es/arctic-mx-7-2g-pasta-termica-218844.html",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "HTTP 500"
+  },
+  "coolmod": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.coolmod.com/pasta-termica-arctic-mx-7-8g-gris/",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
+  },
+  "pcbox": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.pcbox.com/pasta-termica-arctic-mx-7-8g/p",
+   "comprobado": "2026-10-03T18:49+00:00",
    "error": "bloqueado (200)"
   }
  },
@@ -31,7 +113,35 @@
    "precio": null,
    "historial": [],
    "url": "https://www.amazon.es/dp/B096Y2TYKV",
-   "comprobado": "2026-10-03T18:29+00:00",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (200)"
+  },
+  "pccomponentes": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.pccomponentes.com/gigabyte-geforce-rtx-3060-gaming-oc-12gb-gddr6-rev-20",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
+  },
+  "neobyte": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.neobyte.es/gigabyte-rtx-3060-gaming-oc-12gb-lhr-tarjeta-grafica-50135.html",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "HTTP 500"
+  },
+  "coolmod": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.coolmod.com/gigabyte-geforce-rtx-3060-gaming-oc-lhr-12gb-gddr6-tarjeta-grafica/",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
+  },
+  "pcbox": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.pcbox.com/gigabyte-nvidia-geforce-rtx-3060-12gb-gddr6/p",
+   "comprobado": "2026-10-03T18:49+00:00",
    "error": "bloqueado (200)"
   }
  },
@@ -40,7 +150,28 @@
    "precio": null,
    "historial": [],
    "url": "https://www.amazon.es/dp/B0GQC6MV6C",
-   "comprobado": "2026-10-03T18:29+00:00",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (200)"
+  },
+  "neobyte": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.neobyte.es/corsair-vengeance-16gb-ddr5-6000mhz-cl38-dual-profile-gris-memoria-ram-236680.html",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "HTTP 500"
+  },
+  "coolmod": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.coolmod.com/memoria-ddr5-corsair-vengeance-16gb-2x8gb-6000mhz-cl36-expo-xmp/",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
+  },
+  "pcbox": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.pcbox.com/memoria-ram-corsair-vengeance-16gb-ddr5-6000mhz-1x16-cl36/p",
+   "comprobado": "2026-10-03T18:49+00:00",
    "error": "bloqueado (200)"
   }
  },
@@ -49,8 +180,29 @@
    "precio": null,
    "historial": [],
    "url": "https://www.amazon.es/dp/B0DP5DQPRC",
-   "comprobado": "2026-10-03T18:29+00:00",
+   "comprobado": "2026-10-03T18:49+00:00",
    "error": "bloqueado (200)"
+  },
+  "pccomponentes": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.pccomponentes.com/asus-tuf-gaming-b850-plus-wifi",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
+  },
+  "neobyte": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.neobyte.es/asus-tuf-gaming-b850-plus-wifi-placa-base-am5-atx-145568.html",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "HTTP 500"
+  },
+  "coolmod": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.coolmod.com/asus-tuf-gaming-b850-plus-wifi-socket-am5/",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
   }
  },
  "ssd": {
@@ -58,7 +210,35 @@
    "precio": null,
    "historial": [],
    "url": "https://www.amazon.es/dp/B0DGHB9V34",
-   "comprobado": "2026-10-03T18:29+00:00",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (200)"
+  },
+  "pccomponentes": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.pccomponentes.com/samsung-990-evo-plus-2tb-disco-ssd-7250mb-s-nvme-pcie-50-x2-nvme-20-nand",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
+  },
+  "neobyte": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.neobyte.es/samsung-990-evo-plus-2tb-pcie-50-unidad-ssd-m2-144945.html",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "HTTP 500"
+  },
+  "coolmod": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.coolmod.com/samsung-990-evo-plus-series-2tb-pcie-gen5-x2-nvme-ssd/",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
+  },
+  "pcbox": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.pcbox.com/ssd-samsung-990-evo-plus-2tb-nvme-m-2/p",
+   "comprobado": "2026-10-03T18:49+00:00",
    "error": "bloqueado (200)"
   }
  },
@@ -67,7 +247,7 @@
    "precio": null,
    "historial": [],
    "url": "https://www.amazon.es/dp/B0F49555MM",
-   "comprobado": "2026-10-03T18:29+00:00",
+   "comprobado": "2026-10-03T18:49+00:00",
    "error": "bloqueado (200)"
   }
  },
@@ -76,8 +256,34 @@
    "precio": null,
    "historial": [],
    "url": "https://www.amazon.es/dp/B0CK8NDN1Q",
-   "comprobado": "2026-10-03T18:29+00:00",
+   "comprobado": "2026-10-03T18:49+00:00",
    "error": "bloqueado (200)"
+  },
+  "pccomponentes": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.pccomponentes.com/corsair-cx650-650w-80-plus-bronze",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
+  },
+  "neobyte": {
+   "precio": 332.9,
+   "historial": [
+    [
+     "2026-10-03T18:49+00:00",
+     332.9
+    ]
+   ],
+   "url": "https://www.neobyte.es/corsair-cx650-80-bronze-fuente-de-alimentacion-650w-15077.html",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": null
+  },
+  "coolmod": {
+   "precio": null,
+   "historial": [],
+   "url": "https://www.coolmod.com/corsair-cx650-80-plus-bronze-650w-fuente-psu/",
+   "comprobado": "2026-10-03T18:49+00:00",
+   "error": "bloqueado (403)"
   }
  }
 }
