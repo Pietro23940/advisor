@@ -72,7 +72,7 @@ footer{color:var(--mute);font-size:13px;margin-top:24px}
   <div class="chart" id="totchart"></div>
 </section>
 <div id="list"></div>
-<footer>Precios con IVA. Antes de comprar, comprueba gastos de envío y que el vendedor sea la propia tienda. PcComponentes y Neobyte bloquean las lecturas automáticas (Cloudflare): usa «Abrir» para verlos.</footer>
+<footer>Precios con IVA. Antes de comprar, comprueba gastos de envío y que el vendedor sea la propia tienda. PcComponentes y, a veces, Neobyte bloquean las lecturas automáticas (Cloudflare): usa «Abrir» para verlos.</footer>
 </main>
 <script src="data/precios.js"></script>
 <script>
@@ -162,6 +162,7 @@ document.getElementById("list").innerHTML=D.productos.map(p=>{
     <div class="p${v.r.precio==null?" none":""}">${v.r.precio!=null?eur(v.r.precio):"Sin precio"}</div>
     ${v.r.precio==null&&v.r.ultimo!=null?`<div class="old">Último conocido: ${eur(v.r.ultimo)} (${fecha(v.r.ultimo_fecha)})</div>`:""}
     ${diff?`<div class="d ${diff<0?"down":"up"}">${diff<0?"▼":"▲"} ${eur(Math.abs(diff))}</div>`:""}
+    ${v.r.precio!=null&&v.r.origen==="fuera"?`<div class="e" title="Leído desde fuera de España (GitHub): Amazon enseña otras ofertas y sin IVA; se ha sumado el 21 %">estimado, leído desde fuera de España</div>`:""}
     ${v.r.precio!=null&&v.r.stock===false?`<div class="e">Sin stock</div>`:""}
     ${v.r.error?`<div class="e">${esc(v.r.error)}</div>`:""}</div>`}).join("")}</div>
   <div class="chart" data-id="${p.id}"></div></div></section>`}).join("");

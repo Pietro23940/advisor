@@ -90,50 +90,60 @@ def amazon_offers(asin):
             prices.append(p)
     return min(prices) if prices else None
 
+EU = {"ES", "PT", "FR", "IT", "DE", "AT", "BE", "NL", "LU", "IE", "FI", "SE", "DK", "PL", "CZ", "SK", "SI",
+      "HU", "RO", "BG", "HR", "GR", "CY", "MT", "EE", "LV", "LT"}
+
+def amazon_country(html):
+    """País desde el que Amazon cree que se visita (GitHub Actions y el proxy suelen ser «US»)."""
+    m = re.search(r'"countryCode":"([A-Z]{2})"', html)
+    return m.group(1) if m else None
+
+def amazon_read(html, asin=None):
+    """(precio, error, origen) a partir de la ficha. Fuera de España se suma el IVA y se marca el origen."""
+    country = amazon_country(html) or "?"
+    spain = country == "ES"
+    price = amazon_buybox(html)
+    if price is None and asin:
+        time.sleep(1.5)
+        try:
+            price = amazon_offers(asin)
+        except requests.RequestException:
+            price = None
+    if price is None:
+        return None, "no disponible en Amazon" if spain else f"no visible desde fuera de España ({country})", country
+    if country not in EU:
+        price = round(price * IVA, 2)  # Amazon.es enseña precios sin IVA a quien visita desde fuera de la UE
+    return price, None, country
+
 def amazon_direct(url, asin):
     r = SESSION.get(url, timeout=20)
     low = r.text.lower()
     if r.status_code != 200 or "captcha" in low or "robot check" in low:
-        return None, "bloqueado", None
-    html = r.text
-    price = amazon_buybox(html)
-    if price is None:
-        time.sleep(1.5)
-        price = amazon_offers(asin)
-    return price, None if price else "no disponible en Amazon", html
+        return None, "bloqueado", None, None
+    return (*amazon_read(r.text, asin), r.text)
 
 def amazon_proxy(url):
-    """Vía r.jina.ai (para cuando GitHub Actions está bloqueado). Entra desde fuera de la UE: precios sin IVA."""
+    """Vía r.jina.ai, para cuando Amazon bloquea la petición directa."""
     for intento in range(2):
         try:
             r = requests.get(f"https://r.jina.ai/{url}", headers={"X-Return-Format": "html"}, timeout=60)
         except requests.RequestException:
             r = None
         if r is not None and r.status_code == 200 and len(r.text) > 50000:
-            html = r.text
-            text = re.sub(r"<[^>]+>|\s+", " ", _block(html, "availability", 3000))
-            if "Currently unavailable" in text or "No disponible" in text:
-                return None, "sin oferta visible desde el proxy", html
-            price = amazon_buybox(html)
-            if price is None:
-                return None, "precio no encontrado (proxy)", html
-            deliver = re.search(r"(?:Deliver to|Enviar a|Entrega en)(?:&nbsp;|\s|<[^>]+>)*([^<]{0,40})", html)
-            if not (deliver and re.search(r"Espa|Spain|\d{5}", deliver.group(1))):
-                price = round(price * IVA, 2)
-            return price, None, html
+            return (*amazon_read(r.text), r.text)
         time.sleep(5 * (intento + 1))
-    return None, "proxy sin respuesta", None
+    return None, "proxy sin respuesta", None, None
 
 def fetch_amazon(url, asin):
-    """Devuelve (precio, error, fuente, html)."""
+    """Devuelve (precio, error, fuente, origen, html)."""
     try:
-        price, err, html = amazon_direct(url, asin)
+        price, err, origen, html = amazon_direct(url, asin)
         if err != "bloqueado":
-            return price, err, "directo", html
+            return price, err, "directo", origen, html
     except requests.RequestException:
         pass
-    price, err, html = amazon_proxy(url)
-    return price, err, "proxy", html
+    price, err, origen, html = amazon_proxy(url)
+    return price, err, "proxy", origen, html
 
 # ---------- Otras tiendas ----------
 
@@ -282,8 +292,9 @@ def main():
                 rec.clear()
             rec.setdefault("historial", [])
             if store == "amazon":
-                price, err, fuente, html = fetch_amazon(url, p["asin"])
+                price, err, fuente, origen, html = fetch_amazon(url, p["asin"])
                 rec["fuente"] = fuente
+                rec["_origen"] = "ES" if origen == "ES" else "fuera"
                 if html:
                     save_image(p["id"], amazon_image(html))
             else:
@@ -308,6 +319,7 @@ def main():
                 if rec.get("precio") is not None:
                     rec["ultimo"], rec["ultimo_fecha"] = rec["precio"], rec.get("fecha_precio", now)
                 rec["precio"] = None
+                rec.pop("_origen", None)
                 print(f"[{p['id']}/{store}] sin precio: {rec['error']}")
                 continue
 
@@ -316,6 +328,11 @@ def main():
                 notify("Vuelve a haber stock", f"{p['nombre']}: disponible en {store} a {price:.2f} €",
                        rec["url"], "package")
             old = rec.get("precio") if rec.get("precio") is not None else rec.get("ultimo")
+            # Amazon visto desde España y desde fuera (GitHub) da ofertas distintas: solo se comparan lecturas del mismo origen
+            origen, prev_origen = rec.pop("_origen", None), rec.get("origen")
+            comparable = origen is None or prev_origen is None or origen == prev_origen
+            if origen:
+                rec["origen"] = origen
             rec.update(precio=price, fecha_precio=now)
             rec.pop("ultimo", None)
             rec.pop("ultimo_fecha", None)
@@ -326,7 +343,7 @@ def main():
             target = p.get("objetivo")
             dropped = old is not None and price <= old * (1 - min_drop / 100)
             hit_target = target and price <= target and (old is None or old > target)
-            if (dropped or hit_target) and rec.get("stock") is not False:
+            if (dropped or hit_target) and comparable and rec.get("stock") is not False:
                 why = f"objetivo {target:.2f} € alcanzado" if hit_target and not dropped else f"antes {old:.2f} €"
                 notify("Bajada de precio", f"{p['nombre']}: {price:.2f} € en {store} ({why})", rec["url"], "chart_with_downwards_trend")
 

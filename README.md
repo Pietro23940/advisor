@@ -29,9 +29,12 @@ Desde tu ordenador (IP española) Amazon da el precio exacto con IVA. Si ejecuta
 
 ## Cómo lee cada tienda
 
-- **Amazon.es:** primero entra directamente a la ficha y lee el precio de la caja de compra; si Amazon la oculta, usa la oferta nueva más barata de «Ver todas las opciones de compra». Si Amazon bloquea la petición (pasa a menudo desde GitHub), lo lee a través del proxy `r.jina.ai`. El proxy entra desde fuera de la UE, donde Amazon enseña precios sin IVA, así que el vigilante les suma el 21 %. Los productos que Amazon no envía fuera de la UE aparecen como «sin oferta visible desde el proxy» en esas pasadas.
-- **Coolmod y PcBox:** leen bien el precio y si hay stock. Los productos sin stock salen tachados y no cuentan para el más barato ni para los totales.
-- **PcComponentes y Neobyte:** están protegidas con Cloudflare y bloquean cualquier lectura automática. Sus enlaces sirven para abrir la ficha y comparar a mano.
+- **Amazon.es:** lee el precio de la caja de compra y, si Amazon la oculta, la oferta nueva más barata de «Ver todas las opciones de compra». Si Amazon bloquea la petición, usa el proxy `r.jina.ai`.
+  - Desde GitHub Actions (servidores en EE. UU.), Amazon enseña precios sin IVA y oculta lo que no envía fuera de la UE. El vigilante lo detecta (`countryCode`), suma el 21 % y en la página aparece como «estimado, leído desde fuera de España». Los productos ocultos conservan su último precio conocido.
+  - Solo se avisa de una bajada si se compara con un precio leído desde el mismo sitio (España o fuera); así no saltan avisos falsos al alternar entre tu ordenador y GitHub.
+  - Para tener todos los precios exactos de Amazon, ejecuta de vez en cuando el vigilante en tu ordenador y sube los datos.
+- **Coolmod, PcBox y Neobyte:** leen precio y stock (si una tienda bloquea, se reintenta vía proxy). Los productos sin stock salen tachados, no cuentan para el más barato ni los totales, y te llega un aviso cuando vuelven a estar disponibles.
+- **PcComponentes:** casi siempre bloquea con Cloudflare; su enlace sirve para comparar a mano.
 
 ## Protecciones contra precios erróneos
 
