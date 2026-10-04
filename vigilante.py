@@ -9,6 +9,9 @@ STATE = ROOT / "data" / "precios.json"
 OUT_JS = ROOT / "data" / "precios.js"
 IMG_DIR = ROOT / "img"
 TOPIC = os.getenv("NTFY_TOPIC", "").strip()
+_TOPIC_FILE = Path.home() / ".config" / "vigilante-precios" / "ntfy_topic"
+if not TOPIC and _TOPIC_FILE.exists():  # en el PC de casa, el tema se guarda fuera del repositorio
+    TOPIC = _TOPIC_FILE.read_text(encoding="utf-8").strip()
 DELAY = float(os.getenv("DELAY", "4"))  # segundos entre peticiones (aprox.)
 IVA = 1.21  # Amazon.es enseña precios sin IVA a visitantes de fuera de la UE (p. ej. el proxy)
 MAX_RATIO = 2.5   # precio > 2,5× (o < 1/2,5) la mediana de las otras tiendas -> sospechoso
@@ -262,6 +265,17 @@ def suspicious(price, others, rec):
         return f"cambio brusco ({old:.2f} → {price:.2f} €), pendiente de confirmar"
     return None
 
+CASA = os.getenv("MODO") == "casa"  # ejecución en el PC de casa (IP española): solo Amazon, en su propio archivo
+AMAZON_ES = ROOT / "data" / "amazon_es.json"
+AMAZON_ES_JS = ROOT / "data" / "amazon_es.js"
+FRESCO_CASA = 12 * 3600  # si casa leyó Amazon hace menos de esto, GitHub no lo vuelve a leer
+
+def _edad(ts):
+    try:
+        return (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(ts)).total_seconds()
+    except (TypeError, ValueError):
+        return float("inf")
+
 def main():
     if not TOPIC:
         print("::warning::NTFY_TOPIC está vacío: no se enviarán avisos al móvil")
@@ -270,19 +284,26 @@ def main():
                "https://pietro23940.github.io/advisor/", "white_check_mark")
     conf = json.loads((ROOT / "products.json").read_text(encoding="utf-8"))
     min_drop = float(conf.get("ajustes", {}).get("bajada_minima_pct", 1))
-    state = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {}
+    state_file = AMAZON_ES if CASA else STATE
+    state = json.loads(state_file.read_text(encoding="utf-8")) if state_file.exists() else {}
+    # Lecturas de la otra parte: en casa, los precios de las tiendas (para validar); en GitHub, el Amazon de casa
+    otro_file = STATE if CASA else AMAZON_ES
+    otro = json.loads(otro_file.read_text(encoding="utf-8")) if otro_file.exists() else {}
     now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes")
     first = True
 
     for p in conf["productos"]:
         item = state.setdefault(p["id"], {})
+        tiendas = {"amazon": p["tiendas"].get("amazon")} if CASA else p["tiendas"]
         for store in list(item):
-            if not p["tiendas"].get(store):
+            if not tiendas.get(store):
                 del item[store]
         found = {}
-        for store, url in p["tiendas"].items():
+        for store, url in tiendas.items():
             if not url:
                 continue
+            if store == "amazon" and not CASA and _edad(otro.get(p["id"], {}).get("amazon", {}).get("comprobado")) < FRESCO_CASA:
+                continue  # casa lo ha leído hace poco desde España; la lectura desde fuera vale menos
             if not first:
                 time.sleep(DELAY * random.uniform(0.7, 1.3))
             first = False
@@ -291,7 +312,18 @@ def main():
             if rec.get("url") != url:  # enlace nuevo o cambiado: su historial ya no vale
                 rec.clear()
             rec.setdefault("historial", [])
-            if store == "amazon":
+            if store == "amazon" and CASA:
+                try:
+                    price, err, origen, html = amazon_direct(url, p["asin"])
+                except requests.RequestException as e:
+                    price, err, origen, html = None, f"red: {type(e).__name__}", None, None
+                if price is not None and origen != "ES":  # p. ej. con VPN: no es una lectura desde España
+                    price, err = None, f"no leído desde España ({origen})"
+                rec["fuente"] = "casa"
+                rec["_origen"] = "ES"
+                if html:
+                    save_image(p["id"], amazon_image(html))
+            elif store == "amazon":
                 price, err, fuente, origen, html = fetch_amazon(url, p["asin"])
                 rec["fuente"] = fuente
                 rec["_origen"] = "ES" if origen == "ES" else "fuera"
@@ -305,11 +337,15 @@ def main():
             rec.update(url=url, comprobado=now, error=err)
             found[store] = price
 
+        if CASA:  # para validar, los precios actuales de las demás tiendas (leídos por GitHub)
+            ajenos = {s: r.get("precio") for s, r in otro.get(p["id"], {}).items() if s != "amazon"}
+        else:
+            ajenos = {}
         # Validar y guardar después de leer todas las tiendas, para poder comparar entre ellas
         for store, price in found.items():
             rec = item[store]
             if price is not None:
-                others = [v for s, v in found.items() if s != store and v is not None]
+                others = [v for s, v in {**ajenos, **found}.items() if s != store and v is not None]
                 if rec.get("stock") is False:
                     print(f"[{p['id']}/{store}] sin stock")
                 why = suspicious(price, others, rec)
@@ -347,10 +383,14 @@ def main():
                 why = f"objetivo {target:.2f} € alcanzado" if hit_target and not dropped else f"antes {old:.2f} €"
                 notify("Bajada de precio", f"{p['nombre']}: {price:.2f} € en {store} ({why})", rec["url"], "chart_with_downwards_trend")
 
-    STATE.parent.mkdir(exist_ok=True)
-    STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1), encoding="utf-8")
-    payload = {"actualizado": now, "productos": conf["productos"], "precios": state}
-    OUT_JS.write_text("window.DATOS = " + json.dumps(payload, ensure_ascii=False) + ";\n", encoding="utf-8")
+    state_file.parent.mkdir(exist_ok=True)
+    state_file.write_text(json.dumps(state, ensure_ascii=False, indent=1), encoding="utf-8")
+    if CASA:
+        payload = {"actualizado": now, "precios": state}
+        AMAZON_ES_JS.write_text("window.AMAZON_ES = " + json.dumps(payload, ensure_ascii=False) + ";\n", encoding="utf-8")
+    else:
+        payload = {"actualizado": now, "productos": conf["productos"], "envio": conf.get("envio", {}), "precios": state}
+        OUT_JS.write_text("window.DATOS = " + json.dumps(payload, ensure_ascii=False) + ";\n", encoding="utf-8")
 
 if __name__ == "__main__":
     main()

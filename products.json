@@ -2,6 +2,16 @@
   "ajustes": {
     "bajada_minima_pct": 1
   },
+  "envio": {
+    "_nota": "Envío a península revisado el 2026-10-04. coste = lo que cobra por debajo de gratis_desde (null = nunca gratis). aprox = estimado, la tienda solo lo dice al pagar.",
+    "amazon":        {"coste": 3.99,  "gratis_desde": 35,   "aprox": true,  "info": "vendido por Amazon, sin Prime; con Prime es gratis"},
+    "pccomponentes": {"coste": 3.95,  "gratis_desde": 50,   "aprox": false},
+    "neobyte":       {"coste": 5.90,  "gratis_desde": 200,  "aprox": false},
+    "coolmod":       {"coste": 4.95,  "gratis_desde": 49,   "aprox": true,  "info": "entre 2,95 y 10,95 € según peso"},
+    "pcbox":         {"coste": 3.90,  "gratis_desde": 50,   "aprox": false},
+    "alternate":     {"coste": 19.90, "gratis_desde": null, "aprox": false, "info": "envío desde Alemania, «desde 19,90 €»"},
+    "ldlc":          {"coste": 9.95,  "gratis_desde": 50,   "aprox": true,  "info": "envío desde Francia"}
+  },
   "productos": [
     {"id":"cpu","nombre":"AMD Ryzen 7 7800X3D","detalle":"Procesador AM5 · 8 núcleos · 3D V-Cache · Boxed","mpn":"100-100000910WOF","asin":"B0BTZB7F88","objetivo":null,
      "tiendas":{"amazon":"https://www.amazon.es/dp/B0BTZB7F88","pccomponentes":"https://www.pccomponentes.com/amd-ryzen-7-7800x3d-42-ghz-5-ghz","neobyte":"https://www.neobyte.es/amd-ryzen-7-7800x3d-procesador-am5-17301.html","coolmod":"https://www.coolmod.com/amd-ryzen-7-7800x-3d-5-0ghz-socket-am5-boxed/","pcbox":"https://www.pcbox.com/100-100000910wof-amd-ryzen-7-7800x3d--4-2ghz-socket-am5-120/p","alternate":"https://www.alternate.es/AMD/Ryzen-7-7800X3D-Procesador/html/product/1898270","ldlc":"https://www.ldlc.com/es-es/ficha/PB00546345.html"}},

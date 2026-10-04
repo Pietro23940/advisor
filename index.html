@@ -57,6 +57,15 @@ h1{font-size:26px;margin:0 0 4px;font-weight:600}
 .note{font-size:12px;color:var(--mute);margin:4px 0 0}
 .legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--mute);margin-top:6px}
 .legend span{display:flex;align-items:center;gap:5px}
+.s .pk{font-size:11px;color:var(--best);font-weight:600}
+.cesta{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.cesta>div{border:1px solid var(--line);border-radius:7px;padding:8px 10px}
+.cesta .n{display:flex;align-items:center;gap:6px;font-weight:600;font-size:14px}
+.cesta ul{margin:4px 0;padding-left:18px;font-size:13px;color:var(--mute)}
+.cesta .r{display:flex;justify-content:space-between;font-size:13px}
+.cesta .r b{font:500 13px "IBM Plex Mono",monospace}
+.cesta .tot{margin-top:10px;display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:8px}
+.cesta-tot b{font:500 20px "IBM Plex Mono",monospace}
 footer{color:var(--mute);font-size:13px;margin-top:24px}
 @media(max-width:560px){.item{grid-template-columns:1fr}.item img{width:110px;height:110px}h1{font-size:22px}}
 </style>
@@ -66,15 +75,22 @@ footer{color:var(--mute);font-size:13px;margin-top:24px}
 <h1>Precios de mi montaje de PC</h1>
 <p class="sub" id="upd"></p>
 <div class="sum" id="sum"></div>
+<section class="panel" id="cestapanel">
+  <h2>Dónde comprar cada pieza</h2>
+  <p>La combinación más barata contando los gastos de envío de cada tienda (a veces compensa juntar piezas en la misma tienda para llegar al envío gratis).</p>
+  <div class="cesta" id="cesta"></div>
+  <div class="tot cesta-tot" id="cestatot"></div>
+</section>
 <section class="panel" id="totpanel">
   <h2>Mejor combinación a lo largo del tiempo</h2>
-  <p>Suma del precio más barato de cada componente en cada momento.</p>
+  <p>Coste total de la mejor combinación en cada momento, envíos incluidos.</p>
   <div class="chart" id="totchart"></div>
 </section>
 <div id="list"></div>
-<footer>Precios con IVA, sin envío. Antes de comprar, comprueba gastos de envío y que el vendedor sea la propia tienda: Alternate (Alemania) y LDLC (Francia) envían desde fuera y Alternate cobra el envío desde 19,90 €. PcComponentes y, a veces, Neobyte bloquean las lecturas automáticas (Cloudflare): usa «Abrir» para verlos.</footer>
+<footer>Precios con IVA. Los precios de cada pieza no incluyen envío; los totales sí, según las condiciones de envío a península de cada tienda (≈ indica un coste aproximado, la tienda solo lo confirma al pagar). Amazon se calcula sin Prime. Comprueba siempre que el vendedor sea la propia tienda. PcComponentes y, a veces, Neobyte bloquean las lecturas automáticas (Cloudflare): usa «Abrir» para verlos.</footer>
 </main>
 <script src="data/precios.js"></script>
+<script src="data/amazon_es.js"></script>
 <script>
 const NOMBRES={amazon:"Amazon.es",pccomponentes:"PcComponentes",neobyte:"Neobyte",coolmod:"Coolmod",pcbox:"PcBox",alternate:"Alternate",ldlc:"LDLC"};
 const eur=n=>n.toLocaleString("es-ES",{style:"currency",currency:"EUR"});
@@ -83,6 +99,36 @@ const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const col=s=>`var(--s-${s})`;
 const D=window.DATOS||{productos:[],precios:{}};
 const NOW=D.actualizado?+new Date(D.actualizado):Date.now();
+/* Amazon leído desde el PC de casa (España): sustituye a la lectura de GitHub mientras sea reciente */
+const AES=window.AMAZON_ES||{precios:{}};
+D.productos.forEach(p=>{const r=(AES.precios[p.id]||{}).amazon;
+  if(r&&Date.now()-new Date(r.comprobado)<24*36e5)(D.precios[p.id]||(D.precios[p.id]={})).amazon=r});
+
+/* Envíos y mejor cesta */
+const ENV=D.envio||{};
+const envio=(s,sub)=>{const e=ENV[s];if(!e||!(sub>0))return 0;return e.gratis_desde!=null&&sub>=e.gratis_desde?0:e.coste};
+const aprox=s=>ENV[s]&&ENV[s].aprox?"≈ ":"";
+/* items: [{id, of:{tienda:precio}}]. Prueba cada grupo de tiendas, reparte cada pieza a la más barata del grupo
+   y luego mueve piezas de tienda mientras baje el total (precio + envío de cada tienda usada). */
+function mejorCesta(items){
+  items=items.filter(i=>Object.keys(i.of).length);
+  if(!items.length)return null;
+  const st=[...new Set(items.flatMap(i=>Object.keys(i.of)))];
+  const total=a=>{const sub={};let t=0;items.forEach((it,k)=>{t+=it.of[a[k]];sub[a[k]]=(sub[a[k]]||0)+it.of[a[k]]});for(const s in sub)t+=envio(s,sub[s]);return t};
+  let best=null,bt=Infinity;
+  for(let m=1;m<1<<st.length;m++){
+    const set=st.filter((_,b)=>m>>b&1);
+    if(!items.every(it=>set.some(s=>s in it.of)))continue;
+    let a=items.map(it=>set.filter(s=>s in it.of).reduce((x,y)=>it.of[y]<it.of[x]?y:x));
+    let t=total(a),mejora=true;
+    while(mejora){mejora=false;items.forEach((it,k)=>{for(const s in it.of){if(s===a[k])continue;const b=a.slice();b[k]=s;const tb=total(b);if(tb<t-1e-9){a=b;t=tb;mejora=true}}})}
+    if(t<bt){bt=t;best=a}
+  }
+  const tiendas={};
+  items.forEach((it,k)=>{const s=best[k];const g=tiendas[s]||(tiendas[s]={ids:[],sum:0});g.ids.push(it.id);g.sum+=it.of[s]});
+  for(const s in tiendas)tiendas[s].envio=envio(s,tiendas[s].sum);
+  return {total:Math.round(bt*100)/100,asig:Object.fromEntries(items.map((it,k)=>[it.id,best[k]])),tiendas,n:items.length};
+}
 const PH="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><rect width="140" height="140" fill="#e5e9ed"/><text x="70" y="75" font-size="12" text-anchor="middle" fill="#5c6b78" font-family="sans-serif">Sin imagen</text></svg>');
 
 /* Serie escalonada: el precio se mantiene hasta el siguiente cambio y llega hasta la última comprobación */
@@ -141,17 +187,19 @@ function lineChart(el,series,opts={}){
 }
 
 /* Tarjetas */
-document.getElementById("upd").textContent=D.actualizado?"Última comprobación: "+new Date(D.actualizado).toLocaleString("es-ES"):"Aún no hay datos. Ejecuta el vigilante.";
-const totals={};let mix=0,mixN=0;const allSeries={};
+document.getElementById("upd").textContent=D.actualizado?"Última comprobación: "+new Date(D.actualizado).toLocaleString("es-ES")+(AES.actualizado?" · Amazon desde casa: "+new Date(AES.actualizado).toLocaleString("es-ES"):""):"Aún no hay datos. Ejecuta el vigilante.";
+const totals={};const allSeries={};
+const okR=r=>r.precio!=null&&r.stock!==false;
+const CESTA=mejorCesta(D.productos.map(p=>{const rec=D.precios[p.id]||{};const of={};
+  Object.entries(p.tiendas).forEach(([s,u])=>{if(u&&rec[s]&&okR(rec[s]))of[s]=rec[s].precio});return {id:p.id,of}}));
 document.getElementById("list").innerHTML=D.productos.map(p=>{
   const rec=D.precios[p.id]||{};
   const vals=Object.entries(p.tiendas).filter(([s,u])=>u).map(([s,u])=>({s,u,r:rec[s]||{}}));
-  const ok=r=>r.precio!=null&&r.stock!==false;
+  const ok=okR;
   const prices=vals.filter(v=>ok(v.r)).map(v=>v.r.precio);
   const min=prices.length?Math.min(...prices):null;
-  if(min!=null){mix+=min;mixN++}
   vals.forEach(v=>{if(ok(v.r)){const t=totals[v.s]||(totals[v.s]={sum:0,n:0});t.sum+=v.r.precio;t.n++}});
-  allSeries[p.id]=vals.map(v=>({...serie(v.r),name:NOMBRES[v.s]||v.s,c:col(v.s),nostock:v.r.stock===false}));
+  allSeries[p.id]=vals.map(v=>({...serie(v.r),store:v.s,name:NOMBRES[v.s]||v.s,c:col(v.s),nostock:v.r.stock===false}));
   return `<section class="item"><img src="img/${p.id}.jpg" alt="${esc(p.nombre)}" loading="lazy" onerror="this.onerror=null;this.src=PH">
   <div style="min-width:0"><h2>${esc(p.nombre)}</h2><div class="det">${esc(p.detalle)}${p.mpn?` · <span class="mpn">${esc(p.mpn)}</span>`:""}</div>
   <div class="stores">${vals.map(v=>{
@@ -164,11 +212,30 @@ document.getElementById("list").innerHTML=D.productos.map(p=>{
     ${diff?`<div class="d ${diff<0?"down":"up"}">${diff<0?"▼":"▲"} ${eur(Math.abs(diff))}</div>`:""}
     ${v.r.precio!=null&&v.r.origen==="fuera"?`<div class="e" title="Leído desde fuera de España (GitHub): Amazon enseña otras ofertas y sin IVA; se ha sumado el 21 %">estimado, leído desde fuera de España</div>`:""}
     ${v.r.precio!=null&&v.r.stock===false?`<div class="e">Sin stock</div>`:""}
+    ${CESTA&&CESTA.asig[p.id]===v.s?`<div class="pk">✓ En la mejor cesta</div>`:""}
     ${v.r.error?`<div class="e">${esc(v.r.error)}</div>`:""}</div>`}).join("")}</div>
   <div class="chart" data-id="${p.id}"></div></div></section>`}).join("");
 document.querySelectorAll(".chart[data-id]").forEach(el=>{const p=D.productos.find(x=>x.id===el.dataset.id);lineChart(el,allSeries[el.dataset.id],{label:"Evolución del precio de "+p.nombre})});
 
-document.getElementById("sum").innerHTML=Object.entries(totals).map(([s,t])=>`<div><small>${NOMBRES[s]||s} (${t.n}/${D.productos.length})</small><b>${eur(t.sum)}</b></div>`).join("")+`<div class="mix"><small>Mejor combinación (${mixN}/${D.productos.length})</small><b>${eur(mix)}</b></div>`;
+const envTxt=(s,sum)=>{const e=envio(s,sum);return e?`+ ${aprox(s)}${eur(e)} envío`:"envío gratis"};
+document.getElementById("sum").innerHTML=Object.entries(totals).map(([s,t])=>`<div><small>Todo en ${NOMBRES[s]||s} (${t.n}/${D.productos.length}) · ${envTxt(s,t.sum)}</small><b>${eur(t.sum+envio(s,t.sum))}</b></div>`).join("")+
+  (CESTA?`<div class="mix"><small>Mejor combinación con envío (${CESTA.n}/${D.productos.length})</small><b>${eur(CESTA.total)}</b></div>`:"");
+
+/* Panel «Dónde comprar cada pieza» */
+(function(){
+  if(!CESTA){document.getElementById("cestapanel").hidden=true;return}
+  const nom=id=>(D.productos.find(p=>p.id===id)||{}).nombre||id;
+  const orden=Object.entries(CESTA.tiendas).sort((a,b)=>b[1].sum-a[1].sum);
+  document.getElementById("cesta").innerHTML=orden.map(([s,g])=>{const e=ENV[s]||{};
+    const falta=e.gratis_desde!=null&&g.envio?` (gratis desde ${eur(e.gratis_desde)})`:"";
+    return `<div><div class="n"><i class="sw" style="background:${col(s)}"></i>${NOMBRES[s]||s}</div>
+    <ul>${g.ids.map(id=>`<li>${esc(nom(id))}</li>`).join("")}</ul>
+    <div class="r"><span>Piezas</span><b>${eur(g.sum)}</b></div>
+    <div class="r"><span title="${esc(e.info||"")}">Envío${falta}</span><b>${g.envio?aprox(s)+eur(g.envio):"gratis"}</b></div></div>`}).join("");
+  const env=orden.reduce((t,[,g])=>t+g.envio,0);
+  const faltan=D.productos.length-CESTA.n;
+  document.getElementById("cestatot").innerHTML=`<span>Total con envío${env?` (${eur(env)} de envíos)`:""}${faltan?` · faltan ${faltan} piezas sin precio`:""}</span><b>${eur(CESTA.total)}</b>`;
+})();
 
 /* Total de la mejor combinación en cada momento en que cambió algún precio */
 (function(){
@@ -176,9 +243,9 @@ document.getElementById("sum").innerHTML=Object.entries(totals).map(([s,t])=>`<d
   const times=[...new Set(ss.flatMap(s=>[...s.pts.map(p=>p[0]),s.end]))].sort((a,b)=>a-b);
   const pts=[];let last=null;
   times.forEach(t=>{
-    let sum=0,n=0;
-    for(const id in allSeries){const v=allSeries[id].map(s=>s.pts&&s.pts.length&&!s.nostock?valorEn(s,t):null).filter(x=>x!=null);if(v.length){sum+=Math.min(...v);n++}}
-    if(n&&sum!==last){pts.push([t,Math.round(sum*100)/100]);last=sum}
+    const c=mejorCesta(Object.keys(allSeries).map(id=>{const of={};
+      allSeries[id].forEach(s=>{const v=s.pts&&s.pts.length&&!s.nostock?valorEn(s,t):null;if(v!=null)of[s.store]=v});return {id,of}}));
+    if(c&&c.total!==last){pts.push([t,c.total]);last=c.total}
   });
   const el=document.getElementById("totchart");
   if(!pts.length){document.getElementById("totpanel").hidden=true;return}
