@@ -183,8 +183,8 @@ def in_stock(html):
     m = re.search(r'product:availability"\s+content="([^"]+)"', html, re.I)
     if m:
         return "out" not in m.group(1).lower()
-    m = re.search(r'schema\.org/(InStock|OutOfStock|SoldOut|Discontinued)', html)
-    return m.group(1) == "InStock" if m else None
+    m = re.search(r'(?:schema\.org/|"availability"\s*:\s*")(InStock|LimitedAvailability|OutOfStock|SoldOut|Discontinued|BackOrder|PreOrder)', html)
+    return m.group(1) in ("InStock", "LimitedAvailability") if m else None  # BackOrder = "en más de 15 días" (LDLC)
 
 def store_proxy(url):
     """Plan B cuando la tienda bloquea la IP (p. ej. Coolmod desde GitHub Actions)."""

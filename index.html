@@ -8,13 +8,13 @@
 <style>
 :root{--bg:#eef1f4;--card:#fff;--ink:#14202b;--mute:#5c6b78;--line:#d5dce3;--acc:#0b7a75;--best:#1f8a4c;--bestbg:#e4f4ea;--down:#1f8a4c;--up:#b3402a;
   --grid:#e6eaee;--axis:#a9b4be;--tip:#14202b;--tipink:#fff;
-  --s-amazon:#2a78d6;--s-pccomponentes:#eb6834;--s-neobyte:#1baf7a;--s-coolmod:#eda100;--s-pcbox:#e87ba4;--s-total:#2a78d6}
+  --s-amazon:#2a78d6;--s-pccomponentes:#eb6834;--s-neobyte:#1baf7a;--s-coolmod:#eda100;--s-pcbox:#e87ba4;--s-alternate:#b8324a;--s-ldlc:#8a63d2;--s-total:#2a78d6}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171d;--card:#18222b;--ink:#e8eef3;--mute:#93a3b1;--line:#2a3743;--acc:#3cc4bb;--best:#5fd68a;--bestbg:#17301f;--down:#5fd68a;--up:#ff8a73;
   --grid:#24303b;--axis:#3a4855;--tip:#e8eef3;--tipink:#10171d;
-  --s-amazon:#3987e5;--s-pccomponentes:#d95926;--s-neobyte:#199e70;--s-coolmod:#c98500;--s-pcbox:#d55181;--s-total:#3987e5}}
+  --s-amazon:#3987e5;--s-pccomponentes:#d95926;--s-neobyte:#199e70;--s-coolmod:#c98500;--s-pcbox:#d55181;--s-alternate:#e05a70;--s-ldlc:#a283ea;--s-total:#3987e5}}
 :root[data-theme="dark"]{--bg:#10171d;--card:#18222b;--ink:#e8eef3;--mute:#93a3b1;--line:#2a3743;--acc:#3cc4bb;--best:#5fd68a;--bestbg:#17301f;--down:#5fd68a;--up:#ff8a73;
   --grid:#24303b;--axis:#3a4855;--tip:#e8eef3;--tipink:#10171d;
-  --s-amazon:#3987e5;--s-pccomponentes:#d95926;--s-neobyte:#199e70;--s-coolmod:#c98500;--s-pcbox:#d55181;--s-total:#3987e5}
+  --s-amazon:#3987e5;--s-pccomponentes:#d95926;--s-neobyte:#199e70;--s-coolmod:#c98500;--s-pcbox:#d55181;--s-alternate:#e05a70;--s-ldlc:#a283ea;--s-total:#3987e5}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "IBM Plex Sans",system-ui,sans-serif}
 main{max-width:1060px;margin:0 auto;padding:28px 16px 60px}
@@ -72,11 +72,11 @@ footer{color:var(--mute);font-size:13px;margin-top:24px}
   <div class="chart" id="totchart"></div>
 </section>
 <div id="list"></div>
-<footer>Precios con IVA. Antes de comprar, comprueba gastos de envío y que el vendedor sea la propia tienda. PcComponentes y, a veces, Neobyte bloquean las lecturas automáticas (Cloudflare): usa «Abrir» para verlos.</footer>
+<footer>Precios con IVA, sin envío. Antes de comprar, comprueba gastos de envío y que el vendedor sea la propia tienda: Alternate (Alemania) y LDLC (Francia) envían desde fuera y Alternate cobra el envío desde 19,90 €. PcComponentes y, a veces, Neobyte bloquean las lecturas automáticas (Cloudflare): usa «Abrir» para verlos.</footer>
 </main>
 <script src="data/precios.js"></script>
 <script>
-const NOMBRES={amazon:"Amazon.es",pccomponentes:"PcComponentes",neobyte:"Neobyte",coolmod:"Coolmod",pcbox:"PcBox"};
+const NOMBRES={amazon:"Amazon.es",pccomponentes:"PcComponentes",neobyte:"Neobyte",coolmod:"Coolmod",pcbox:"PcBox",alternate:"Alternate",ldlc:"LDLC"};
 const eur=n=>n.toLocaleString("es-ES",{style:"currency",currency:"EUR"});
 const fecha=t=>new Date(t).toLocaleString("es-ES",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
