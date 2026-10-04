@@ -8,7 +8,7 @@ Vigila los precios de tus componentes, te avisa al móvil cuando bajan y los mue
 2. **Repositorio:** crea un repositorio **público** en GitHub y sube todo el contenido de esta carpeta (incluida `.github`). Es público para poder usar GitHub Pages gratis.
 3. **Secreto:** en el repositorio, *Settings → Secrets and variables → Actions → New repository secret*. Nombre: `NTFY_TOPIC`. Valor: el nombre del canal.
 4. **Enlaces:** en `products.json` pega, para cada producto, el enlace de la ficha en cada tienda (`pccomponentes`, `neobyte`, `coolmod`, `pcbox`). Las tiendas con `""` se ignoran. Puedes poner un precio en `objetivo` para que te avise al llegar a él.
-5. **Primera ejecución:** pestaña *Actions → Vigilar precios → Run workflow*. Después se ejecuta solo cada 6 horas.
+5. **Primera ejecución:** pestaña *Actions → Vigilar precios → Run workflow*. Después se ejecuta solo cada 3 horas.
 6. **Página:** *Settings → Pages → Branch: main, carpeta / (root)*. Tu página quedará en `https://TU_USUARIO.github.io/NOMBRE_REPO/`.
 
 ## Probar en tu ordenador

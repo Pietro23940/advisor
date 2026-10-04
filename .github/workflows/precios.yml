@@ -1,7 +1,7 @@
 name: Vigilar precios
 on:
   schedule:
-    - cron: "17 */6 * * *"
+    - cron: "17 */3 * * *"
   workflow_dispatch:
     inputs:
       prueba_aviso:

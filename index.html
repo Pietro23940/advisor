@@ -123,7 +123,7 @@ function lineChart(el,series,opts={}){
   el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.label||"Evolución del precio")}">${g}${lines}
     <line class="cross" y1="${T}" y2="${H-B}" stroke="var(--axis)" stroke-dasharray="3 3" visibility="hidden"/>
     <rect x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}" fill="transparent"/></svg><div class="tip"></div>`+
-    (series.every(s=>s.pts.length<2)?`<p class="note">De momento solo hay una lectura; el gráfico se irá completando con cada comprobación (cada 6 horas).</p>`:"")+
+    (series.every(s=>s.pts.length<2)?`<p class="note">De momento solo hay una lectura; el gráfico se irá completando con cada comprobación (cada 3 horas).</p>`:"")+
     (opts.legend!==false&&series.length>1?`<div class="legend">${series.map(s=>`<span><i class="sw" style="background:${s.c}"></i>${esc(s.name)}</span>`).join("")}</div>`:"");
   const svg=el.querySelector("svg"),tip=el.querySelector(".tip"),cross=svg.querySelector(".cross");
   const move=e=>{

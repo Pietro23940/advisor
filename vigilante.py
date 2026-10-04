@@ -288,7 +288,9 @@ def main():
                     save_image(p["id"], amazon_image(html))
             else:
                 price, err, stock = fetch_store(url)
-                rec["stock"] = stock
+                if stock is not None:  # si no se pudo leer, se conserva el último estado conocido
+                    rec["restock"] = rec.get("stock") is False and stock is True
+                    rec["stock"] = stock
             rec.update(url=url, comprobado=now, error=err)
             found[store] = price
 
@@ -310,6 +312,9 @@ def main():
                 continue
 
             rec.pop("pendiente", None)
+            if rec.pop("restock", False):
+                notify("Vuelve a haber stock", f"{p['nombre']}: disponible en {store} a {price:.2f} €",
+                       rec["url"], "package")
             old = rec.get("precio") if rec.get("precio") is not None else rec.get("ultimo")
             rec.update(precio=price, fecha_precio=now)
             rec.pop("ultimo", None)
