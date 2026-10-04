@@ -6,33 +6,59 @@
 <title>Precios · Montaje PC</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#eef1f4;--card:#fff;--ink:#14202b;--mute:#5c6b78;--line:#d5dce3;--acc:#0b7a75;--best:#1f8a4c;--bestbg:#e4f4ea;--down:#1f8a4c;--up:#b3402a}
-@media (prefers-color-scheme:dark){:root{--bg:#10171d;--card:#18222b;--ink:#e8eef3;--mute:#93a3b1;--line:#2a3743;--acc:#3cc4bb;--best:#5fd68a;--bestbg:#17301f;--down:#5fd68a;--up:#ff8a73}}
+:root{--bg:#eef1f4;--card:#fff;--ink:#14202b;--mute:#5c6b78;--line:#d5dce3;--acc:#0b7a75;--best:#1f8a4c;--bestbg:#e4f4ea;--down:#1f8a4c;--up:#b3402a;
+  --grid:#e6eaee;--axis:#a9b4be;--tip:#14202b;--tipink:#fff;
+  --s-amazon:#2a78d6;--s-pccomponentes:#eb6834;--s-neobyte:#1baf7a;--s-coolmod:#eda100;--s-pcbox:#e87ba4;--s-total:#2a78d6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171d;--card:#18222b;--ink:#e8eef3;--mute:#93a3b1;--line:#2a3743;--acc:#3cc4bb;--best:#5fd68a;--bestbg:#17301f;--down:#5fd68a;--up:#ff8a73;
+  --grid:#24303b;--axis:#3a4855;--tip:#e8eef3;--tipink:#10171d;
+  --s-amazon:#3987e5;--s-pccomponentes:#d95926;--s-neobyte:#199e70;--s-coolmod:#c98500;--s-pcbox:#d55181;--s-total:#3987e5}}
+:root[data-theme="dark"]{--bg:#10171d;--card:#18222b;--ink:#e8eef3;--mute:#93a3b1;--line:#2a3743;--acc:#3cc4bb;--best:#5fd68a;--bestbg:#17301f;--down:#5fd68a;--up:#ff8a73;
+  --grid:#24303b;--axis:#3a4855;--tip:#e8eef3;--tipink:#10171d;
+  --s-amazon:#3987e5;--s-pccomponentes:#d95926;--s-neobyte:#199e70;--s-coolmod:#c98500;--s-pcbox:#d55181;--s-total:#3987e5}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "IBM Plex Sans",system-ui,sans-serif}
-main{max-width:1060px;margin:0 auto;padding:28px 18px 60px}
+main{max-width:1060px;margin:0 auto;padding:28px 16px 60px}
 h1{font-size:26px;margin:0 0 4px;font-weight:600}
 .sub{color:var(--mute);margin:0 0 20px}
-.sum{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
-.sum div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:160px}
+.sum{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.sum div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:150px;flex:1 1 150px}
 .sum small{display:block;color:var(--mute);font-size:12px}
 .sum b{font:500 20px "IBM Plex Mono",monospace}
 .sum .mix{border-color:var(--best);background:var(--bestbg)}
-.item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px;display:grid;grid-template-columns:120px 1fr;gap:16px}
-.item img{width:120px;height:120px;object-fit:contain;background:#fff;border-radius:6px;border:1px solid var(--line)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:24px}
+.panel h2{font-size:15px;margin:0 0 2px;font-weight:600}
+.panel p{margin:0 0 8px;color:var(--mute);font-size:13px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px;display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px}
+.item img{width:140px;height:140px;object-fit:contain;background:#fff;border-radius:6px;border:1px solid var(--line);padding:6px}
 .item h2{font-size:17px;margin:0;font-weight:600}
-.item p{margin:2px 0 12px;color:var(--mute);font-size:13px}
-.stores{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:8px}
-.s{border:1px solid var(--line);border-radius:7px;padding:8px 10px}
+.item .det{margin:2px 0 12px;color:var(--mute);font-size:13px}
+.item .mpn{font:500 11px "IBM Plex Mono",monospace;color:var(--mute)}
+.stores{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.s{border:1px solid var(--line);border-radius:7px;padding:8px 10px;min-width:0}
 .s.best{border-color:var(--best);background:var(--bestbg)}
-.s .n{display:flex;justify-content:space-between;font-size:12px;color:var(--mute)}
+.s .n{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:12px;color:var(--mute)}
+.s .n span{display:flex;align-items:center;gap:6px}
+.sw{width:10px;height:10px;border-radius:3px;display:inline-block;flex:none}
 .s a{color:var(--acc);text-decoration:none;font-weight:500}
 .s a:hover,.s a:focus-visible{text-decoration:underline}
 .s .p{font:500 18px "IBM Plex Mono",monospace}
-.s .p.none{color:var(--mute);font-size:14px}
+.s.nostock .p{color:var(--mute);text-decoration:line-through}
+.s .p.none{color:var(--mute);font-size:14px;font-family:inherit}
+.s .old{font-size:12px;color:var(--mute)}
 .s .d{font-size:12px}.d.down{color:var(--down)}.d.up{color:var(--up)}
-.s .e{font-size:11px;color:var(--mute)}
-@media(max-width:560px){.item{grid-template-columns:1fr}.item img{width:96px;height:96px}}
+.s .e{font-size:11px;color:var(--mute);overflow-wrap:anywhere}
+.chart{position:relative;margin-top:12px}
+.chart svg{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}
+.chart .ax{font:11px "IBM Plex Sans",system-ui,sans-serif;fill:var(--mute)}
+.chart .empty{font-size:12px;fill:var(--mute)}
+.tip{position:absolute;pointer-events:none;background:var(--tip);color:var(--tipink);border-radius:6px;padding:6px 8px;font-size:12px;line-height:1.4;white-space:nowrap;transform:translate(-50%,-100%);opacity:0;transition:opacity .1s;z-index:2}
+.tip b{font-family:"IBM Plex Mono",monospace;font-weight:500}
+.tip .sw{margin-right:5px;outline:1px solid rgba(255,255,255,.4)}
+.note{font-size:12px;color:var(--mute);margin:4px 0 0}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--mute);margin-top:6px}
+.legend span{display:flex;align-items:center;gap:5px}
+footer{color:var(--mute);font-size:13px;margin-top:24px}
+@media(max-width:560px){.item{grid-template-columns:1fr}.item img{width:110px;height:110px}h1{font-size:22px}}
 </style>
 </head>
 <body>
@@ -40,33 +66,124 @@ h1{font-size:26px;margin:0 0 4px;font-weight:600}
 <h1>Precios de mi montaje de PC</h1>
 <p class="sub" id="upd"></p>
 <div class="sum" id="sum"></div>
+<section class="panel" id="totpanel">
+  <h2>Mejor combinación a lo largo del tiempo</h2>
+  <p>Suma del precio más barato de cada componente en cada momento.</p>
+  <div class="chart" id="totchart"></div>
+</section>
 <div id="list"></div>
+<footer>Precios con IVA. Antes de comprar, comprueba gastos de envío y que el vendedor sea la propia tienda. PcComponentes y Neobyte bloquean las lecturas automáticas (Cloudflare): usa «Abrir» para verlos.</footer>
 </main>
 <script src="data/precios.js"></script>
 <script>
 const NOMBRES={amazon:"Amazon.es",pccomponentes:"PcComponentes",neobyte:"Neobyte",coolmod:"Coolmod",pcbox:"PcBox"};
 const eur=n=>n.toLocaleString("es-ES",{style:"currency",currency:"EUR"});
+const fecha=t=>new Date(t).toLocaleString("es-ES",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const col=s=>`var(--s-${s})`;
 const D=window.DATOS||{productos:[],precios:{}};
-const PH="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><rect width="120" height="120" fill="#e5e9ed"/><text x="60" y="65" font-size="12" text-anchor="middle" fill="#5c6b78">Sin imagen</text></svg>');
-const totals={};let mix=0,mixN=0;
+const NOW=D.actualizado?+new Date(D.actualizado):Date.now();
+const PH="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><rect width="140" height="140" fill="#e5e9ed"/><text x="70" y="75" font-size="12" text-anchor="middle" fill="#5c6b78" font-family="sans-serif">Sin imagen</text></svg>');
+
+/* Serie escalonada: el precio se mantiene hasta el siguiente cambio y llega hasta la última comprobación */
+function serie(r){
+  const h=(r.historial||[]).map(([t,v])=>[+new Date(t),v]);
+  if(!h.length)return [];
+  const end=r.precio!=null?+new Date(r.comprobado||NOW):h[h.length-1][0];
+  return {pts:h,end};
+}
+function valorEn(s,t){let v=null;for(const [x,y] of s.pts){if(x<=t)v=y;else break}return t<=s.end?v:null}
+
+/* Gráfico de líneas escalonadas con cruceta y tooltip */
+const CHARTS=[];
+function lineChart(el,series,opts={}){
+  if(!opts._again)CHARTS.push([el,series,opts]);
+  series=series.filter(s=>s.pts&&s.pts.length);
+  const W=Math.max(260,el.clientWidth||600);
+  if(!series.length){el.innerHTML=`<p class="note">Aún sin historial de precios.</p>`;return}
+  const H=opts.h||(W<500?140:160),L=58,R=12,T=10,B=24;
+  let x0=Math.min(...series.map(s=>s.pts[0][0])),x1=Math.max(...series.map(s=>s.end));
+  if(x1-x0<36e5){x0-=18e5;x1+=18e5}
+  const vals=series.flatMap(s=>s.pts.map(p=>p[1]));
+  let y0=Math.min(...vals),y1=Math.max(...vals);const pad=Math.max((y1-y0)*.15,y1*.03,1);y0=Math.max(0,y0-pad);y1+=pad;
+  const X=t=>L+(t-x0)/(x1-x0)*(W-L-R),Y=v=>T+(1-(v-y0)/(y1-y0))*(H-T-B);
+  const ticks=4,yt=[...Array(ticks+1)].map((_,i)=>y0+(y1-y0)*i/ticks);
+  const span=x1-x0,xt=[...Array(4)].map((_,i)=>x0+span*(i+.5)/4);
+  const fmtX=t=>span>2*864e5?new Date(t).toLocaleDateString("es-ES",{day:"numeric",month:"short"}):new Date(t).toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"});
+  let g=yt.map(v=>`<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--grid)" stroke-width="1"/><text class="ax" x="${L-6}" y="${Y(v)+4}" text-anchor="end">${v.toLocaleString("es-ES",{maximumFractionDigits:y1-y0<20?2:0,minimumFractionDigits:y1-y0<20?2:0})} €</text>`).join("");
+  g+=`<line x1="${L}" x2="${W-R}" y1="${H-B}" y2="${H-B}" stroke="var(--axis)"/>`;
+  g+=xt.map(t=>`<text class="ax" x="${X(t)}" y="${H-6}" text-anchor="middle">${fmtX(t)}</text>`).join("");
+  const lines=series.map(s=>{
+    let d="";s.pts.forEach(([t,v],i)=>{d+=i?`H${X(t)}V${Y(v)}`:`M${X(t)},${Y(v)}`});d+=`H${X(s.end)}`;
+    const last=s.pts[s.pts.length-1];
+    return `<path d="${d}" fill="none" stroke="${s.c}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`+
+      s.pts.map(([t,v])=>`<circle cx="${X(t)}" cy="${Y(v)}" r="3" fill="${s.c}" stroke="var(--card)" stroke-width="2"/>`).join("")+
+      `<circle cx="${X(s.end)}" cy="${Y(last[1])}" r="4" fill="${s.c}" stroke="var(--card)" stroke-width="2"/>`;
+  }).join("");
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.label||"Evolución del precio")}">${g}${lines}
+    <line class="cross" y1="${T}" y2="${H-B}" stroke="var(--axis)" stroke-dasharray="3 3" visibility="hidden"/>
+    <rect x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}" fill="transparent"/></svg><div class="tip"></div>`+
+    (series.every(s=>s.pts.length<2)?`<p class="note">De momento solo hay una lectura; el gráfico se irá completando con cada comprobación (cada 6 horas).</p>`:"")+
+    (opts.legend!==false&&series.length>1?`<div class="legend">${series.map(s=>`<span><i class="sw" style="background:${s.c}"></i>${esc(s.name)}</span>`).join("")}</div>`:"");
+  const svg=el.querySelector("svg"),tip=el.querySelector(".tip"),cross=svg.querySelector(".cross");
+  const move=e=>{
+    const r=svg.getBoundingClientRect(),px=(e.clientX-r.left)/r.width*W;
+    const t=Math.min(x1,Math.max(x0,x0+(px-L)/(W-L-R)*(x1-x0)));
+    const rows=series.map(s=>({s,v:valorEn(s,t)})).filter(o=>o.v!=null).sort((a,b)=>a.v-b.v);
+    if(!rows.length){hide();return}
+    cross.setAttribute("x1",X(t));cross.setAttribute("x2",X(t));cross.setAttribute("visibility","visible");
+    tip.innerHTML=`<div>${fecha(t)}</div>`+rows.map(o=>`<div><i class="sw" style="background:${o.s.c}"></i>${esc(o.s.name)}: <b>${eur(o.v)}</b></div>`).join("");
+    const left=X(t)/W*r.width,tw=tip.offsetWidth;
+    tip.style.left=Math.min(r.width-tw/2,Math.max(tw/2,left))+"px";tip.style.top=(Y(rows[0].v)/H*r.height-8)+"px";tip.style.opacity=1;
+  };
+  const hide=()=>{tip.style.opacity=0;cross.setAttribute("visibility","hidden")};
+  svg.addEventListener("pointermove",move);svg.addEventListener("pointerdown",move);svg.addEventListener("pointerleave",hide);
+}
+
+/* Tarjetas */
 document.getElementById("upd").textContent=D.actualizado?"Última comprobación: "+new Date(D.actualizado).toLocaleString("es-ES"):"Aún no hay datos. Ejecuta el vigilante.";
+const totals={};let mix=0,mixN=0;const allSeries={};
 document.getElementById("list").innerHTML=D.productos.map(p=>{
   const rec=D.precios[p.id]||{};
   const vals=Object.entries(p.tiendas).filter(([s,u])=>u).map(([s,u])=>({s,u,r:rec[s]||{}}));
-  const prices=vals.map(v=>v.r.precio).filter(x=>x!=null);
+  const ok=r=>r.precio!=null&&r.stock!==false;
+  const prices=vals.filter(v=>ok(v.r)).map(v=>v.r.precio);
   const min=prices.length?Math.min(...prices):null;
   if(min!=null){mix+=min;mixN++}
-  vals.forEach(v=>{if(v.r.precio!=null){const t=totals[v.s]||(totals[v.s]={sum:0,n:0});t.sum+=v.r.precio;t.n++}});
-  const img=p.imagen||`https://m.media-amazon.com/images/P/${p.asin}.01._SCLZZZZZZZ_.jpg`;
-  return `<section class="item"><img src="${img}" alt="${p.nombre}" loading="lazy" onerror="this.onerror=null;this.src=PH"><div><h2>${p.nombre}</h2><p>${p.detalle}</p><div class="stores">${vals.map(v=>{
+  vals.forEach(v=>{if(ok(v.r)){const t=totals[v.s]||(totals[v.s]={sum:0,n:0});t.sum+=v.r.precio;t.n++}});
+  allSeries[p.id]=vals.map(v=>({...serie(v.r),name:NOMBRES[v.s]||v.s,c:col(v.s),nostock:v.r.stock===false}));
+  return `<section class="item"><img src="img/${p.id}.jpg" alt="${esc(p.nombre)}" loading="lazy" onerror="this.onerror=null;this.src=PH">
+  <div style="min-width:0"><h2>${esc(p.nombre)}</h2><div class="det">${esc(p.detalle)}${p.mpn?` · <span class="mpn">${esc(p.mpn)}</span>`:""}</div>
+  <div class="stores">${vals.map(v=>{
     const h=v.r.historial||[];const prev=h.length>1?h[h.length-2][1]:null;
     const diff=prev!=null&&v.r.precio!=null?v.r.precio-prev:null;
-    const best=v.r.precio!=null&&v.r.precio===min&&prices.length>1;
-    return `<div class="s${best?" best":""}"><div class="n"><span>${NOMBRES[v.s]||v.s}</span><a href="${v.u}" target="_blank" rel="noopener">Abrir</a></div>
+    const best=ok(v.r)&&v.r.precio===min&&prices.length>1;
+    return `<div class="s${best?" best":""}${v.r.precio!=null&&v.r.stock===false?" nostock":""}"><div class="n"><span><i class="sw" style="background:${col(v.s)}"></i>${NOMBRES[v.s]||v.s}</span><a href="${esc(v.u)}" target="_blank" rel="noopener">Abrir</a></div>
     <div class="p${v.r.precio==null?" none":""}">${v.r.precio!=null?eur(v.r.precio):"Sin precio"}</div>
+    ${v.r.precio==null&&v.r.ultimo!=null?`<div class="old">Último conocido: ${eur(v.r.ultimo)} (${fecha(v.r.ultimo_fecha)})</div>`:""}
     ${diff?`<div class="d ${diff<0?"down":"up"}">${diff<0?"▼":"▲"} ${eur(Math.abs(diff))}</div>`:""}
-    ${v.r.error?`<div class="e">${v.r.error}</div>`:""}</div>`}).join("")}</div></div></section>`}).join("");
+    ${v.r.precio!=null&&v.r.stock===false?`<div class="e">Sin stock</div>`:""}
+    ${v.r.error?`<div class="e">${esc(v.r.error)}</div>`:""}</div>`}).join("")}</div>
+  <div class="chart" data-id="${p.id}"></div></div></section>`}).join("");
+document.querySelectorAll(".chart[data-id]").forEach(el=>{const p=D.productos.find(x=>x.id===el.dataset.id);lineChart(el,allSeries[el.dataset.id],{label:"Evolución del precio de "+p.nombre})});
+
 document.getElementById("sum").innerHTML=Object.entries(totals).map(([s,t])=>`<div><small>${NOMBRES[s]||s} (${t.n}/${D.productos.length})</small><b>${eur(t.sum)}</b></div>`).join("")+`<div class="mix"><small>Mejor combinación (${mixN}/${D.productos.length})</small><b>${eur(mix)}</b></div>`;
+
+/* Total de la mejor combinación en cada momento en que cambió algún precio */
+(function(){
+  const ss=Object.values(allSeries).flat().filter(s=>s.pts&&s.pts.length);
+  const times=[...new Set(ss.flatMap(s=>[...s.pts.map(p=>p[0]),s.end]))].sort((a,b)=>a-b);
+  const pts=[];let last=null;
+  times.forEach(t=>{
+    let sum=0,n=0;
+    for(const id in allSeries){const v=allSeries[id].map(s=>s.pts&&s.pts.length&&!s.nostock?valorEn(s,t):null).filter(x=>x!=null);if(v.length){sum+=Math.min(...v);n++}}
+    if(n&&sum!==last){pts.push([t,Math.round(sum*100)/100]);last=sum}
+  });
+  const el=document.getElementById("totchart");
+  if(!pts.length){document.getElementById("totpanel").hidden=true;return}
+  lineChart(el,[{pts,end:times[times.length-1],name:"Mejor combinación",c:"var(--s-total)"}],{h:180,legend:false,label:"Evolución del total de la mejor combinación"});
+})();
+let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>CHARTS.forEach(([el,s,o])=>lineChart(el,s,{...o,_again:true})),150)});
 </script>
 </body>
 </html>

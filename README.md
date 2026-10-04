@@ -17,14 +17,24 @@ Vigila los precios de tus componentes, te avisa al móvil cuando bajan y los mue
 pip install requests
 NTFY_TOPIC=tu-canal python vigilante.py
 ```
-Luego abre `index.html` con doble clic. Es la mejor forma de ver qué tiendas te dejan leer el precio.
+Luego abre `index.html` con doble clic: verás los precios, la imagen de cada componente (se guardan en `img/`) y un gráfico con la evolución del precio en cada tienda, además del total de la mejor combinación. Pasa el ratón (o toca) sobre un gráfico para ver los precios de cada momento.
+
+Desde tu ordenador (IP española) Amazon da el precio exacto con IVA. Si ejecutas el vigilante en local, sube después los cambios (`git add data img && git commit -m "Actualizar precios" && git push`).
 
 ## Ajustes
 
 - `bajada_minima_pct` (en `products.json`): porcentaje mínimo de bajada para avisar. Por defecto, 1 %.
+- `objetivo` (en cada producto): precio al que quieres que te avise.
 - Frecuencia: línea `cron` de `.github/workflows/precios.yml`.
 
-## Limitaciones
+## Cómo lee cada tienda
 
-- Amazon y algunas tiendas bloquean las peticiones desde GitHub. Cuando pase, la página mostrará «bloqueado» en esa casilla y no avisará de ese producto. Para Amazon.es es más fiable usar Keepa.
-- El script lee el precio del código de la ficha (datos estructurados de la tienda). Si una tienda cambia su web, puede dejar de encontrarlo («precio no encontrado»).
+- **Amazon.es:** primero entra directamente a la ficha y lee el precio de la caja de compra; si Amazon la oculta, usa la oferta nueva más barata de «Ver todas las opciones de compra». Si Amazon bloquea la petición (pasa a menudo desde GitHub), lo lee a través del proxy `r.jina.ai`. El proxy entra desde fuera de la UE, donde Amazon enseña precios sin IVA, así que el vigilante les suma el 21 %. Los productos que Amazon no envía fuera de la UE aparecen como «sin oferta visible desde el proxy» en esas pasadas.
+- **Coolmod y PcBox:** leen bien el precio y si hay stock. Los productos sin stock salen tachados y no cuentan para el más barato ni para los totales.
+- **PcComponentes y Neobyte:** están protegidas con Cloudflare y bloquean cualquier lectura automática. Sus enlaces sirven para abrir la ficha y comparar a mano.
+
+## Protecciones contra precios erróneos
+
+- Si una tienda da un precio más de 2,5 veces mayor o menor que la mediana de las demás, se descarta como «precio sospechoso».
+- Si un precio cambia más de un 60 % de golpe, no se acepta hasta que la siguiente comprobación lo confirme.
+- Cuando una tienda falla, la página muestra el último precio conocido en gris, con su fecha, en vez de hacerlo pasar por el actual.
