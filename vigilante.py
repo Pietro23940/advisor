@@ -176,15 +176,28 @@ def in_stock(html):
     m = re.search(r'schema\.org/(InStock|OutOfStock|SoldOut|Discontinued)', html)
     return m.group(1) == "InStock" if m else None
 
+def store_proxy(url):
+    """Plan B cuando la tienda bloquea la IP (p. ej. Coolmod desde GitHub Actions)."""
+    try:
+        r = requests.get(f"https://r.jina.ai/{url}", headers={"X-Return-Format": "html"}, timeout=60)
+    except requests.RequestException:
+        return None
+    if r.status_code != 200 or "just a moment" in r.text[:5000].lower():
+        return None
+    price = extract_price(r.text)
+    return (price, None, in_stock(r.text)) if price else None
+
 def fetch_store(url):
     """Devuelve (precio, error, en_stock)."""
     try:
         r = SESSION.get(url, timeout=25)
     except requests.RequestException as e:
-        return None, f"red: {type(e).__name__}", None
+        return store_proxy(url) or (None, f"red: {type(e).__name__}", None)
     blocked = is_blocked(r)
-    if blocked:
+    if blocked == "protegido (Cloudflare)":  # el proxy tampoco pasa el reto de Cloudflare
         return None, blocked, None
+    if blocked:
+        return store_proxy(url) or (None, blocked, None)
     if r.status_code != 200:
         return None, f"HTTP {r.status_code}", None
     price = extract_price(r.text)
@@ -192,7 +205,7 @@ def fetch_store(url):
         return price, None, in_stock(r.text)
     # Algunas tiendas cargan reCAPTCHA en todas las fichas; solo cuenta como bloqueo si no hay precio
     if "robot check" in r.text.lower() or "captcha" in r.text[:3000].lower():
-        return None, "bloqueado (captcha)", None
+        return store_proxy(url) or (None, "bloqueado (captcha)", None)
     return None, "precio no encontrado", None
 
 # ---------- Imágenes ----------
@@ -240,6 +253,11 @@ def suspicious(price, others, rec):
     return None
 
 def main():
+    if not TOPIC:
+        print("::warning::NTFY_TOPIC está vacío: no se enviarán avisos al móvil")
+    elif os.getenv("PRUEBA_AVISO") == "true":
+        notify("Prueba del vigilante", "Si ves esto, los avisos de bajada de precio te llegarán al móvil.",
+               "https://pietro23940.github.io/advisor/", "white_check_mark")
     conf = json.loads((ROOT / "products.json").read_text(encoding="utf-8"))
     min_drop = float(conf.get("ajustes", {}).get("bajada_minima_pct", 1))
     state = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {}
