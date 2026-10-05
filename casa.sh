@@ -4,6 +4,12 @@
 set -euo pipefail
 cd "$(dirname "$(readlink -f "$0")")"
 
+# Una sola ejecución a la vez: si el temporizador y una ejecución a mano coinciden, se pisarían al hacer git
+if command -v flock >/dev/null; then
+    exec 9>.casa.lock
+    flock -n 9 || { echo "Ya hay otra ejecución en marcha" >&2; exit 0; }
+fi
+
 # Esperar a tener conexión (p. ej. justo después de encender el PC)
 for _ in $(seq 1 12); do
     curl -s -m 5 -o /dev/null https://www.amazon.es && break

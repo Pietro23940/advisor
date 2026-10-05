@@ -7,13 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#eef1f4;--card:#fff;--ink:#14202b;--mute:#5c6b78;--line:#d5dce3;--acc:#0b7a75;--best:#1f8a4c;--bestbg:#e4f4ea;--down:#1f8a4c;--up:#b3402a;
-  --grid:#e6eaee;--axis:#a9b4be;--tip:#14202b;--tipink:#fff;
+  --grid:#e6eaee;--axis:#a9b4be;--tip:#14202b;--tipink:#fff;--warnbg:#fff4d6;--warnbd:#e2b93b;
   --s-amazon:#2a78d6;--s-pccomponentes:#eb6834;--s-neobyte:#1baf7a;--s-coolmod:#eda100;--s-pcbox:#e87ba4;--s-alternate:#b8324a;--s-ldlc:#8a63d2;--s-total:#2a78d6}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171d;--card:#18222b;--ink:#e8eef3;--mute:#93a3b1;--line:#2a3743;--acc:#3cc4bb;--best:#5fd68a;--bestbg:#17301f;--down:#5fd68a;--up:#ff8a73;
-  --grid:#24303b;--axis:#3a4855;--tip:#e8eef3;--tipink:#10171d;
+  --grid:#24303b;--axis:#3a4855;--tip:#e8eef3;--tipink:#10171d;--warnbg:#3a2f10;--warnbd:#8a6d1c;
   --s-amazon:#3987e5;--s-pccomponentes:#d95926;--s-neobyte:#199e70;--s-coolmod:#c98500;--s-pcbox:#d55181;--s-alternate:#e05a70;--s-ldlc:#a283ea;--s-total:#3987e5}}
 :root[data-theme="dark"]{--bg:#10171d;--card:#18222b;--ink:#e8eef3;--mute:#93a3b1;--line:#2a3743;--acc:#3cc4bb;--best:#5fd68a;--bestbg:#17301f;--down:#5fd68a;--up:#ff8a73;
-  --grid:#24303b;--axis:#3a4855;--tip:#e8eef3;--tipink:#10171d;
+  --grid:#24303b;--axis:#3a4855;--tip:#e8eef3;--tipink:#10171d;--warnbg:#3a2f10;--warnbd:#8a6d1c;
   --s-amazon:#3987e5;--s-pccomponentes:#d95926;--s-neobyte:#199e70;--s-coolmod:#c98500;--s-pcbox:#d55181;--s-alternate:#e05a70;--s-ldlc:#a283ea;--s-total:#3987e5}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "IBM Plex Sans",system-ui,sans-serif}
@@ -64,8 +64,15 @@ h1{font-size:26px;margin:0 0 4px;font-weight:600}
 .cesta ul{margin:4px 0;padding-left:18px;font-size:13px;color:var(--mute)}
 .cesta .r{display:flex;justify-content:space-between;font-size:13px}
 .cesta .r b{font:500 13px "IBM Plex Mono",monospace}
-.cesta .tot{margin-top:10px;display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:8px}
+.cesta-tot{margin-top:10px;display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:8px}
 .cesta-tot b{font:500 20px "IBM Plex Mono",monospace}
+.warn{background:var(--warnbg);border:1px solid var(--warnbd);border-radius:8px;padding:8px 12px;margin:0 0 16px;font-size:13px}
+.obj.ok{color:var(--best);font-weight:600}
+.cambios{list-style:none;margin:0;padding:0;font-size:13px}
+.cambios li{padding:6px 0;border-top:1px solid var(--line)}
+.cambios li:first-child{border-top:0}
+.cambios small{color:var(--mute)}
+.cambios .sw{margin:0 4px 0 2px}
 footer{color:var(--mute);font-size:13px;margin-top:24px}
 @media(max-width:560px){.item{grid-template-columns:1fr}.item img{width:110px;height:110px}h1{font-size:22px}}
 </style>
@@ -74,6 +81,7 @@ footer{color:var(--mute);font-size:13px;margin-top:24px}
 <main>
 <h1>Precios de mi montaje de PC</h1>
 <p class="sub" id="upd"></p>
+<div class="warn" id="stale" role="status" hidden></div>
 <div class="sum" id="sum"></div>
 <section class="panel" id="cestapanel">
   <h2>Dónde comprar cada pieza</h2>
@@ -81,9 +89,14 @@ footer{color:var(--mute);font-size:13px;margin-top:24px}
   <div class="cesta" id="cesta"></div>
   <div class="tot cesta-tot" id="cestatot"></div>
 </section>
+<section class="panel" id="cambiospanel" hidden>
+  <h2>Cambios recientes</h2>
+  <p>Variaciones de precio de las últimas 48 horas (las bajadas, en verde).</p>
+  <ul class="cambios" id="cambios"></ul>
+</section>
 <section class="panel" id="totpanel">
   <h2>Mejor combinación a lo largo del tiempo</h2>
-  <p>Coste total de la mejor combinación en cada momento, envíos incluidos.</p>
+  <p>Coste total de la mejor combinación en cada momento, envíos incluidos. Solo cuentan los momentos con la cesta completa, para que el total no cambie solo porque una pieza aparezca o desaparezca.</p>
   <div class="chart" id="totchart"></div>
 </section>
 <div id="list"></div>
@@ -95,14 +108,16 @@ footer{color:var(--mute);font-size:13px;margin-top:24px}
 const NOMBRES={amazon:"Amazon.es",pccomponentes:"PcComponentes",neobyte:"Neobyte",coolmod:"Coolmod",pcbox:"PcBox",alternate:"Alternate",ldlc:"LDLC"};
 const eur=n=>n.toLocaleString("es-ES",{style:"currency",currency:"EUR"});
 const fecha=t=>new Date(t).toLocaleString("es-ES",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
+const pz=n=>n===1?"1 pieza":n+" piezas";
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const col=s=>`var(--s-${s})`;
+const col=s=>NOMBRES[s]?`var(--s-${s})`:`hsl(${[...s].reduce((h,c)=>(h*31+c.charCodeAt(0))%360,7)} 55% 50%)`; /* tienda sin color propio */
 const D=window.DATOS||{productos:[],precios:{}};
 const NOW=D.actualizado?+new Date(D.actualizado):Date.now();
-/* Amazon leído desde el PC de casa (España): sustituye a la lectura de GitHub mientras sea reciente */
+/* Amazon leído desde el PC de casa (España): sustituye a la lectura de GitHub mientras sea reciente y fiable
+   (un captcha o un fallo de red en casa no debe tapar el precio que leyó GitHub) */
 const AES=window.AMAZON_ES||{precios:{}};
 D.productos.forEach(p=>{const r=(AES.precios[p.id]||{}).amazon;
-  if(r&&Date.now()-new Date(r.comprobado)<24*36e5)(D.precios[p.id]||(D.precios[p.id]={})).amazon=r});
+  if(r&&Date.now()-new Date(r.comprobado)<24*36e5&&(r.precio!=null||r.error==="no disponible en Amazon"))(D.precios[p.id]||(D.precios[p.id]={})).amazon=r});
 
 /* Envíos y mejor cesta */
 const ENV=D.envio||{};
@@ -115,14 +130,23 @@ function mejorCesta(items){
   if(!items.length)return null;
   const st=[...new Set(items.flatMap(i=>Object.keys(i.of)))];
   const total=a=>{const sub={};let t=0;items.forEach((it,k)=>{t+=it.of[a[k]];sub[a[k]]=(sub[a[k]]||0)+it.of[a[k]]});for(const s in sub)t+=envio(s,sub[s]);return t};
-  let best=null,bt=Infinity;
+  let best=null,bt=Infinity;const vistos=new Set();  /* muchos grupos de tiendas dan el mismo reparto de partida: se evalúa una vez */
   for(let m=1;m<1<<st.length;m++){
     const set=st.filter((_,b)=>m>>b&1);
     if(!items.every(it=>set.some(s=>s in it.of)))continue;
     let a=items.map(it=>set.filter(s=>s in it.of).reduce((x,y)=>it.of[y]<it.of[x]?y:x));
+    const clave=a.join("|");if(vistos.has(clave))continue;vistos.add(clave);
     let t=total(a),mejora=true;
     while(mejora){mejora=false;items.forEach((it,k)=>{for(const s in it.of){if(s===a[k])continue;const b=a.slice();b[k]=s;const tb=total(b);if(tb<t-1e-9){a=b;t=tb;mejora=true}}})}
     if(t<bt){bt=t;best=a}
+  }
+  /* Última pasada: mover dos piezas a la vez (p. ej. para llegar juntas al envío gratis), que de una en una no se ve */
+  for(let mejora=true;mejora;){mejora=false;
+    for(let i=0;i<items.length&&!mejora;i++)for(let j=i+1;j<items.length&&!mejora;j++)
+      for(const si in items[i].of)for(const sj in items[j].of){
+        if(si===best[i]&&sj===best[j])continue;
+        const b=best.slice();b[i]=si;b[j]=sj;const tb=total(b);
+        if(tb<bt-1e-9){best=b;bt=tb;mejora=true;break}}
   }
   const tiendas={};
   items.forEach((it,k)=>{const s=best[k];const g=tiendas[s]||(tiendas[s]={ids:[],sum:0});g.ids.push(it.id);g.sum+=it.of[s]});
@@ -198,14 +222,16 @@ document.getElementById("list").innerHTML=D.productos.map(p=>{
   const ok=okR;
   const prices=vals.filter(v=>ok(v.r)).map(v=>v.r.precio);
   const min=prices.length?Math.min(...prices):null;
+  const obj=p.objetivo>0?min!=null&&min<=p.objetivo?`<span class="obj ok">✓ Objetivo ${eur(p.objetivo)} alcanzado</span>`:`<span class="obj">Objetivo ${eur(p.objetivo)}${min!=null?` · faltan ${eur(min-p.objetivo)}`:""}</span>`:"";
   vals.forEach(v=>{if(ok(v.r)){const t=totals[v.s]||(totals[v.s]={sum:0,n:0});t.sum+=v.r.precio;t.n++}});
   allSeries[p.id]=vals.map(v=>({...serie(v.r),store:v.s,name:NOMBRES[v.s]||v.s,c:col(v.s),nostock:v.r.stock===false}));
   return `<section class="item"><img src="img/${p.id}.jpg" alt="${esc(p.nombre)}" loading="lazy" onerror="this.onerror=null;this.src=PH">
-  <div style="min-width:0"><h2>${esc(p.nombre)}</h2><div class="det">${esc(p.detalle)}${p.mpn?` · <span class="mpn">${esc(p.mpn)}</span>`:""}</div>
+  <div style="min-width:0"><h2>${esc(p.nombre)}</h2><div class="det">${esc(p.detalle)}${p.mpn?` · <span class="mpn">${esc(p.mpn)}</span>`:""}${obj?` · ${obj}`:""}</div>
   <div class="stores">${vals.map(v=>{
     const h=v.r.historial||[];const prev=h.length>1?h[h.length-2][1]:null;
     const diff=prev!=null&&v.r.precio!=null?v.r.precio-prev:null;
     const best=ok(v.r)&&v.r.precio===min&&prices.length>1;
+    const hmin=v.r.precio!=null&&h.length>=3&&v.r.precio<=Math.min(...h.map(x=>x[1]));
     return `<div class="s${best?" best":""}${v.r.precio!=null&&v.r.stock===false?" nostock":""}"><div class="n"><span><i class="sw" style="background:${col(v.s)}"></i>${NOMBRES[v.s]||v.s}</span><a href="${esc(v.u)}" target="_blank" rel="noopener">Abrir</a></div>
     <div class="p${v.r.precio==null?" none":""}">${v.r.precio!=null?eur(v.r.precio):"Sin precio"}</div>
     ${v.r.precio==null&&v.r.ultimo!=null?`<div class="old">Último conocido: ${eur(v.r.ultimo)} (${fecha(v.r.ultimo_fecha)})</div>`:""}
@@ -213,12 +239,16 @@ document.getElementById("list").innerHTML=D.productos.map(p=>{
     ${v.r.precio!=null&&v.r.origen==="fuera"?`<div class="e" title="Leído desde fuera de España (GitHub): Amazon enseña otras ofertas y sin IVA; se ha sumado el 21 %">estimado, leído desde fuera de España</div>`:""}
     ${v.r.precio!=null&&v.r.stock===false?`<div class="e">Sin stock</div>`:""}
     ${CESTA&&CESTA.asig[p.id]===v.s?`<div class="pk">✓ En la mejor cesta</div>`:""}
+    ${hmin?`<div class="pk" title="El precio más bajo que se ha visto en esta tienda">★ Mínimo histórico</div>`:""}
     ${v.r.error?`<div class="e">${esc(v.r.error)}</div>`:""}</div>`}).join("")}</div>
   <div class="chart" data-id="${p.id}"></div></div></section>`}).join("");
 document.querySelectorAll(".chart[data-id]").forEach(el=>{const p=D.productos.find(x=>x.id===el.dataset.id);lineChart(el,allSeries[el.dataset.id],{label:"Evolución del precio de "+p.nombre})});
 
 const envTxt=(s,sum)=>{const e=envio(s,sum);return e?`+ ${aprox(s)}${eur(e)} envío`:"envío gratis"};
-document.getElementById("sum").innerHTML=Object.entries(totals).map(([s,t])=>`<div><small>Todo en ${NOMBRES[s]||s} (${t.n}/${D.productos.length}) · ${envTxt(s,t.sum)}</small><b>${eur(t.sum+envio(s,t.sum))}</b></div>`).join("")+
+/* Más piezas cubiertas primero (un total con 3 de 9 piezas no es «más barato»), y a igualdad, el menor */
+document.getElementById("sum").innerHTML=Object.entries(totals).map(([s,t])=>({s,t,tot:t.sum+envio(s,t.sum)}))
+  .sort((a,b)=>b.t.n-a.t.n||a.tot-b.tot)
+  .map(({s,t,tot})=>`<div${t.n<D.productos.length?` title="Faltan ${pz(D.productos.length-t.n)} sin precio o sin stock en esta tienda: el total no es comparable"`:""}><small>Todo en ${NOMBRES[s]||s} (${t.n}/${D.productos.length}) · ${envTxt(s,t.sum)}</small><b>${eur(tot)}</b></div>`).join("")+
   (CESTA?`<div class="mix"><small>Mejor combinación con envío (${CESTA.n}/${D.productos.length})</small><b>${eur(CESTA.total)}</b></div>`:"");
 
 /* Panel «Dónde comprar cada pieza» */
@@ -234,7 +264,7 @@ document.getElementById("sum").innerHTML=Object.entries(totals).map(([s,t])=>`<d
     <div class="r"><span title="${esc(e.info||"")}">Envío${falta}</span><b>${g.envio?aprox(s)+eur(g.envio):"gratis"}</b></div></div>`}).join("");
   const env=orden.reduce((t,[,g])=>t+g.envio,0);
   const faltan=D.productos.length-CESTA.n;
-  document.getElementById("cestatot").innerHTML=`<span>Total con envío${env?` (${eur(env)} de envíos)`:""}${faltan?` · faltan ${faltan} piezas sin precio`:""}</span><b>${eur(CESTA.total)}</b>`;
+  document.getElementById("cestatot").innerHTML=`<span>Total con envío${env?` (${eur(env)} de envíos)`:""}${faltan?` · ${faltan===1?"falta":"faltan"} ${pz(faltan)} sin precio`:""}</span><b>${eur(CESTA.total)}</b>`;
 })();
 
 /* Total de la mejor combinación en cada momento en que cambió algún precio */
@@ -242,14 +272,32 @@ document.getElementById("sum").innerHTML=Object.entries(totals).map(([s,t])=>`<d
   const ss=Object.values(allSeries).flat().filter(s=>s.pts&&s.pts.length);
   const times=[...new Set(ss.flatMap(s=>[...s.pts.map(p=>p[0]),s.end]))].sort((a,b)=>a-b);
   const pts=[];let last=null;
-  times.forEach(t=>{
-    const c=mejorCesta(Object.keys(allSeries).map(id=>{const of={};
-      allSeries[id].forEach(s=>{const v=s.pts&&s.pts.length&&!s.nostock?valorEn(s,t):null;if(v!=null)of[s.store]=v});return {id,of}}));
-    if(c&&c.total!==last){pts.push([t,c.total]);last=c.total}
-  });
+  const cs=times.map(t=>[t,mejorCesta(Object.keys(allSeries).map(id=>{const of={};
+    allSeries[id].forEach(s=>{const v=s.pts&&s.pts.length&&!s.nostock?valorEn(s,t):null;if(v!=null)of[s.store]=v});return {id,of}}))]).filter(([,c])=>c);
+  const maxN=Math.max(0,...cs.map(([,c])=>c.n));  /* una cesta con menos piezas saldría más barata sin serlo */
+  cs.filter(([,c])=>c.n===maxN).forEach(([t,c])=>{if(c.total!==last){pts.push([t,c.total]);last=c.total}});
   const el=document.getElementById("totchart");
   if(!pts.length){document.getElementById("totpanel").hidden=true;return}
   lineChart(el,[{pts,end:times[times.length-1],name:"Mejor combinación",c:"var(--s-total)"}],{h:180,legend:false,label:"Evolución del total de la mejor combinación"});
+})();
+/* Si el vigilante lleva horas sin actualizar, que se note */
+(function(){
+  const h=(Date.now()-NOW)/36e5;if(!D.actualizado||h<=8)return;
+  const el=document.getElementById("stale");el.hidden=false;
+  el.textContent=`Los precios tienen ${h>48?Math.round(h/24)+" días":Math.round(h)+" h"} (se actualizan cada 3 h): puede que el vigilante esté parado. Revisa la pestaña Actions del repositorio.`;
+})();
+
+/* Cambios de precio de las últimas 48 h, de más reciente a más antiguo */
+(function(){
+  const lim=NOW-48*36e5,ev=[];
+  D.productos.forEach(p=>Object.entries(D.precios[p.id]||{}).forEach(([s,r])=>{const h=r.historial||[];
+    for(let i=1;i<h.length;i++){const t=+new Date(h[i][0]);if(t>=lim)ev.push({t,p,s,de:h[i-1][1],a:h[i][1]})}}));
+  if(!ev.length)return;
+  ev.sort((x,y)=>y.t-x.t);
+  document.getElementById("cambiospanel").hidden=false;
+  document.getElementById("cambios").innerHTML=ev.slice(0,8).map(e=>{const d=e.a-e.de;
+    return `<li><span class="d ${d<0?"down":"up"}">${d<0?"▼":"▲"} ${eur(Math.abs(d))}</span> <b>${esc(e.p.nombre)}</b> en <i class="sw" style="background:${col(e.s)}"></i>${NOMBRES[e.s]||e.s}: ${eur(e.de)} → ${eur(e.a)} <small>${fecha(e.t)}</small></li>`}).join("")+
+    (ev.length>8?`<li><small>… y ${ev.length-8} cambios más</small></li>`:"");
 })();
 let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>CHARTS.forEach(([el,s,o])=>lineChart(el,s,{...o,_again:true})),150)});
 </script>
