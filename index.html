@@ -3,104 +3,102 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Precios · Montaje PC</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<title>Precios de mi PC</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#eef1f4;--card:#fff;--ink:#14202b;--mute:#5c6b78;--line:#d5dce3;--acc:#0b7a75;--best:#1f8a4c;--bestbg:#e4f4ea;--down:#1f8a4c;--up:#b3402a;
-  --grid:#e6eaee;--axis:#a9b4be;--tip:#14202b;--tipink:#fff;--warnbg:#fff4d6;--warnbd:#e2b93b;
-  --s-amazon:#2a78d6;--s-pccomponentes:#eb6834;--s-neobyte:#1baf7a;--s-coolmod:#eda100;--s-pcbox:#e87ba4;--s-alternate:#b8324a;--s-ldlc:#8a63d2;--s-total:#2a78d6}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171d;--card:#18222b;--ink:#e8eef3;--mute:#93a3b1;--line:#2a3743;--acc:#3cc4bb;--best:#5fd68a;--bestbg:#17301f;--down:#5fd68a;--up:#ff8a73;
-  --grid:#24303b;--axis:#3a4855;--tip:#e8eef3;--tipink:#10171d;--warnbg:#3a2f10;--warnbd:#8a6d1c;
-  --s-amazon:#3987e5;--s-pccomponentes:#d95926;--s-neobyte:#199e70;--s-coolmod:#c98500;--s-pcbox:#d55181;--s-alternate:#e05a70;--s-ldlc:#a283ea;--s-total:#3987e5}}
-:root[data-theme="dark"]{--bg:#10171d;--card:#18222b;--ink:#e8eef3;--mute:#93a3b1;--line:#2a3743;--acc:#3cc4bb;--best:#5fd68a;--bestbg:#17301f;--down:#5fd68a;--up:#ff8a73;
-  --grid:#24303b;--axis:#3a4855;--tip:#e8eef3;--tipink:#10171d;--warnbg:#3a2f10;--warnbd:#8a6d1c;
-  --s-amazon:#3987e5;--s-pccomponentes:#d95926;--s-neobyte:#199e70;--s-coolmod:#c98500;--s-pcbox:#d55181;--s-alternate:#e05a70;--s-ldlc:#a283ea;--s-total:#3987e5}
+:root{--bg:#fff;--card:#fff;--ink:#151515;--mute:#6a6a67;--line:#e9e9e6;--soft:#f0f0ed;--hover:#f6f6f4;--acc:#0a6b4f;--up:#a33b22;
+  --grid:#efefec;--axis:#b4b4b0;--tip:#151515;--tipink:#fff;--warnbg:#fff4d6;--warnbd:#e2b93b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111110;--card:#111110;--ink:#ececea;--mute:#9a9a95;--line:#2a2a28;--soft:#222220;--hover:#1a1a19;--acc:#4cc38a;--up:#ff9a80;
+  --grid:#222220;--axis:#55554f;--tip:#ececea;--tipink:#111110;--warnbg:#3a2f10;--warnbd:#8a6d1c}}
+:root[data-theme="dark"]{--bg:#111110;--card:#111110;--ink:#ececea;--mute:#9a9a95;--line:#2a2a28;--soft:#222220;--hover:#1a1a19;--acc:#4cc38a;--up:#ff9a80;
+  --grid:#222220;--axis:#55554f;--tip:#ececea;--tipink:#111110;--warnbg:#3a2f10;--warnbd:#8a6d1c}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "IBM Plex Sans",system-ui,sans-serif}
-main{max-width:1060px;margin:0 auto;padding:28px 16px 60px}
-h1{font-size:26px;margin:0 0 4px;font-weight:600}
-.sub{color:var(--mute);margin:0 0 20px}
-.sum{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
-.sum div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:150px;flex:1 1 150px}
-.sum small{display:block;color:var(--mute);font-size:12px}
-.sum b{font:500 20px "IBM Plex Mono",monospace}
-.sum .mix{border-color:var(--best);background:var(--bestbg)}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:24px}
-.panel h2{font-size:15px;margin:0 0 2px;font-weight:600}
-.panel p{margin:0 0 8px;color:var(--mute);font-size:13px}
-.item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px;display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px}
-.item img{width:140px;height:140px;object-fit:contain;background:#fff;border-radius:6px;border:1px solid var(--line);padding:6px}
-.item h2{font-size:17px;margin:0;font-weight:600}
-.item .det{margin:2px 0 12px;color:var(--mute);font-size:13px}
-.item .mpn{font:500 11px "IBM Plex Mono",monospace;color:var(--mute)}
-.stores{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
-.s{border:1px solid var(--line);border-radius:7px;padding:8px 10px;min-width:0}
-.s.best{border-color:var(--best);background:var(--bestbg)}
-.s .n{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:12px;color:var(--mute)}
-.s .n span{display:flex;align-items:center;gap:6px}
-.sw{width:10px;height:10px;border-radius:3px;display:inline-block;flex:none}
-.s a{color:var(--acc);text-decoration:none;font-weight:500}
-.s a:hover,.s a:focus-visible{text-decoration:underline}
-.s .p{font:500 18px "IBM Plex Mono",monospace}
-.s.nostock .p{color:var(--mute);text-decoration:line-through}
-.s .p.none{color:var(--mute);font-size:14px;font-family:inherit}
-.s .old{font-size:12px;color:var(--mute)}
-.s .d{font-size:12px}.d.down{color:var(--down)}.d.up{color:var(--up)}
-.s .e{font-size:11px;color:var(--mute);overflow-wrap:anywhere}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Hanken Grotesk",system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:72px 24px 96px}
+h1,h2{margin:0;font-size:20px;font-weight:600}
+h3{margin:0;font-size:16px;font-weight:600}
+a{color:var(--ink)}a:hover{color:var(--acc)}
+a:focus-visible,summary:focus-visible,.rb:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.sub{margin:2px 0 0;color:var(--mute);font-size:14px}
+.warn{background:var(--warnbg);border:1px solid var(--warnbd);border-radius:8px;padding:8px 12px;margin:24px 0 0;font-size:13px}
+.hero{margin-top:72px}
+.hero .big{margin:4px 0 0;font-size:clamp(44px,12vw,76px);font-weight:600;line-height:1.05;letter-spacing:-.02em}
+.hero .txt{margin:12px 0 0;color:var(--mute)}
+.blk{margin-top:80px}
+.grp{margin-top:48px}
+.gh{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px;padding-bottom:12px}
+.gh .sub{margin:0}.gh .sub b{color:var(--ink);font-weight:600}
+.row{border-top:1px solid var(--line)}
+.rb{display:flex;align-items:center;gap:12px;width:100%;margin:0;padding:16px 8px;background:none;border:0;border-radius:6px;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.rb:hover{background:var(--hover)}
+.rb .t{flex:1;min-width:0}
+.rb .t b{display:block;font-weight:500}
+.rb .t small{display:block;color:var(--mute);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rb .p{font-weight:500}
+.chev{flex:none;fill:none;stroke:var(--mute);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s}
+.rb[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.det{padding:4px 8px 24px}
+.det[hidden]{display:none}
+.of{display:flex;align-items:baseline;gap:2px 12px;padding:10px 0;border-top:1px solid var(--soft)}
+.of .n{flex:1 1 auto;min-width:0}
+.of .d{color:var(--mute);font-size:14px}
+.of .v{min-width:72px;text-align:right}
+.of .v.no{color:var(--mute);font-size:14px}
+.of a{font-size:14px}
+.tag{margin-left:8px;color:var(--acc);font-size:13px;font-weight:600;white-space:nowrap}
+.rb .tag{margin:0}
+.why{margin:12px 0 0;padding:10px 12px;background:var(--hover);border-radius:6px;font-size:14px}
+.chg{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 16px;padding:14px 8px;border-top:1px solid var(--line)}
+.chg .t{flex:1 1 260px;min-width:0}
+.chg .t b{display:block;font-weight:500}
+.chg .t small{display:block;color:var(--mute);font-size:14px}
+.chg .r{color:var(--mute);font-size:14px}
+.chg .dl{min-width:96px;text-align:right;font-weight:600}
+.dn{color:var(--acc)}.up{color:var(--up)}
+.solo summary{margin-top:32px;color:var(--mute);font-size:14px;cursor:pointer}
+.solo .of{flex-wrap:wrap}
+.solo .of:first-of-type{margin-top:8px}
 .chart{position:relative;margin-top:12px}
 .chart svg{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}
-.chart .ax{font:11px "IBM Plex Sans",system-ui,sans-serif;fill:var(--mute)}
-.chart .empty{font-size:12px;fill:var(--mute)}
+.chart .ax{font:11px "Hanken Grotesk",system-ui,sans-serif;fill:var(--mute)}
 .tip{position:absolute;pointer-events:none;background:var(--tip);color:var(--tipink);border-radius:6px;padding:6px 8px;font-size:12px;line-height:1.4;white-space:nowrap;transform:translate(-50%,-100%);opacity:0;transition:opacity .1s;z-index:2}
-.tip b{font-family:"IBM Plex Mono",monospace;font-weight:500}
+.tip b{font-weight:600;font-variant-numeric:tabular-nums}
+.sw{width:10px;height:10px;border-radius:3px;display:inline-block;flex:none}
 .tip .sw{margin-right:5px;outline:1px solid rgba(255,255,255,.4)}
 .note{font-size:12px;color:var(--mute);margin:4px 0 0}
 .legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--mute);margin-top:6px}
 .legend span{display:flex;align-items:center;gap:5px}
-.s .pk{font-size:11px;color:var(--best);font-weight:600}
-.cesta{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
-.cesta>div{border:1px solid var(--line);border-radius:7px;padding:8px 10px}
-.cesta .n{display:flex;align-items:center;gap:6px;font-weight:600;font-size:14px}
-.cesta ul{margin:4px 0;padding-left:18px;font-size:13px;color:var(--mute)}
-.cesta .r{display:flex;justify-content:space-between;font-size:13px}
-.cesta .r b{font:500 13px "IBM Plex Mono",monospace}
-.cesta-tot{margin-top:10px;display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:8px}
-.cesta-tot b{font:500 20px "IBM Plex Mono",monospace}
-.warn{background:var(--warnbg);border:1px solid var(--warnbd);border-radius:8px;padding:8px 12px;margin:0 0 16px;font-size:13px}
-.obj.ok{color:var(--best);font-weight:600}
-.cambios{list-style:none;margin:0;padding:0;font-size:13px}
-.cambios li{padding:6px 0;border-top:1px solid var(--line)}
-.cambios li:first-child{border-top:0}
-.cambios small{color:var(--mute)}
-.cambios .sw{margin:0 4px 0 2px}
-footer{color:var(--mute);font-size:13px;margin-top:24px}
-@media(max-width:560px){.item{grid-template-columns:1fr}.item img{width:110px;height:110px}h1{font-size:22px}}
+footer{margin-top:88px;padding-top:24px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+footer p{margin:0}
 </style>
 </head>
 <body>
 <main>
-<h1>Precios de mi montaje de PC</h1>
-<p class="sub" id="upd"></p>
+<header>
+  <h1>Precios de mi PC</h1>
+  <p class="sub" id="upd"></p>
+</header>
 <div class="warn" id="stale" role="status" hidden></div>
-<div class="sum" id="sum"></div>
-<section class="panel" id="cestapanel">
-  <h2>Dónde comprar cada pieza</h2>
-  <p>La combinación más barata contando los gastos de envío de cada tienda (a veces compensa juntar piezas en la misma tienda para llegar al envío gratis).</p>
-  <div class="cesta" id="cesta"></div>
-  <div class="tot cesta-tot" id="cestatot"></div>
+
+<section class="hero" id="hero" aria-label="Total"></section>
+
+<section class="blk" id="dondepanel" aria-label="Qué comprar y dónde">
+  <h2>Qué comprar y dónde</h2>
+  <p class="sub">La combinación más barata contando el envío de cada tienda. Pulsa una pieza para ver su precio en todas las tiendas.</p>
+  <div id="grupos"></div>
+  <div id="solo"></div>
 </section>
-<section class="panel" id="cambiospanel" hidden>
+
+<section class="blk" id="cambiospanel" aria-label="Cambios recientes" hidden>
   <h2>Cambios recientes</h2>
-  <p>Variaciones de precio de las últimas 48 horas (las bajadas, en verde).</p>
-  <ul class="cambios" id="cambios"></ul>
+  <p class="sub">Lo que ha subido o bajado en las últimas 48 horas.</p>
+  <div id="cambios" style="margin-top:16px"></div>
 </section>
-<section class="panel" id="totpanel">
-  <h2>Mejor combinación a lo largo del tiempo</h2>
-  <p>Coste total de la mejor combinación en cada momento, envíos incluidos. Solo cuentan los momentos con la cesta completa, para que el total no cambie solo porque una pieza aparezca o desaparezca.</p>
-  <div class="chart" id="totchart"></div>
-</section>
-<div id="list"></div>
-<footer>Precios con IVA. Los precios de cada pieza no incluyen envío; los totales sí, según las condiciones de envío a península de cada tienda (≈ indica un coste aproximado, la tienda solo lo confirma al pagar). Amazon se calcula sin Prime. Comprueba siempre que el vendedor sea la propia tienda. PcComponentes y, a veces, Neobyte bloquean las lecturas automáticas (Cloudflare): usa «Abrir» para verlos.</footer>
+
+<footer>
+  <p>Precios con IVA. Los precios de cada pieza no incluyen envío; los totales sí, según las condiciones de envío a península de cada tienda (≈ indica un coste aproximado, la tienda solo lo confirma al pagar). Amazon se calcula sin Prime. «Estimado» es un precio de Amazon leído desde fuera de España, con el 21 % de IVA sumado. Comprueba siempre que el vendedor sea la propia tienda. PcComponentes y, a veces, Neobyte bloquean las lecturas automáticas (Cloudflare): usa «Abrir» para verlos.</p>
+</footer>
 </main>
 <script src="data/precios.js"></script>
 <script src="data/amazon_es.js"></script>
@@ -110,7 +108,6 @@ const eur=n=>n.toLocaleString("es-ES",{style:"currency",currency:"EUR"});
 const fecha=t=>new Date(t).toLocaleString("es-ES",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
 const pz=n=>n===1?"1 pieza":n+" piezas";
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const col=s=>NOMBRES[s]?`var(--s-${s})`:`hsl(${[...s].reduce((h,c)=>(h*31+c.charCodeAt(0))%360,7)} 55% 50%)`; /* tienda sin color propio */
 const D=window.DATOS||{productos:[],precios:{}};
 const NOW=D.actualizado?+new Date(D.actualizado):Date.now();
 /* Amazon leído desde el PC de casa (España): sustituye a la lectura de GitHub mientras sea reciente y fiable
@@ -153,7 +150,6 @@ function mejorCesta(items){
   for(const s in tiendas)tiendas[s].envio=envio(s,tiendas[s].sum);
   return {total:Math.round(bt*100)/100,asig:Object.fromEntries(items.map((it,k)=>[it.id,best[k]])),tiendas,n:items.length};
 }
-const PH="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><rect width="140" height="140" fill="#e5e9ed"/><text x="70" y="75" font-size="12" text-anchor="middle" fill="#5c6b78" font-family="sans-serif">Sin imagen</text></svg>');
 
 /* Serie escalonada: el precio se mantiene hasta el siguiente cambio y llega hasta la última comprobación */
 function serie(r){
@@ -210,76 +206,75 @@ function lineChart(el,series,opts={}){
   svg.addEventListener("pointermove",move);svg.addEventListener("pointerdown",move);svg.addEventListener("pointerleave",hide);
 }
 
-/* Tarjetas */
-document.getElementById("upd").textContent=D.actualizado?"Última comprobación: "+new Date(D.actualizado).toLocaleString("es-ES")+(AES.actualizado?" · Amazon desde casa: "+new Date(AES.actualizado).toLocaleString("es-ES"):""):"Aún no hay datos. Ejecuta el vigilante.";
-const totals={};const allSeries={};
-const okR=r=>r.precio!=null&&r.stock!==false;
-const CESTA=mejorCesta(D.productos.map(p=>{const rec=D.precios[p.id]||{};const of={};
-  Object.entries(p.tiendas).forEach(([s,u])=>{if(u&&rec[s]&&okR(rec[s]))of[s]=rec[s].precio});return {id:p.id,of}}));
-document.getElementById("list").innerHTML=D.productos.map(p=>{
-  const rec=D.precios[p.id]||{};
-  const vals=Object.entries(p.tiendas).filter(([s,u])=>u).map(([s,u])=>({s,u,r:rec[s]||{}}));
-  const ok=okR;
-  const prices=vals.filter(v=>ok(v.r)).map(v=>v.r.precio);
-  const min=prices.length?Math.min(...prices):null;
-  const obj=p.objetivo>0?min!=null&&min<=p.objetivo?`<span class="obj ok">✓ Objetivo ${eur(p.objetivo)} alcanzado</span>`:`<span class="obj">Objetivo ${eur(p.objetivo)}${min!=null?` · faltan ${eur(min-p.objetivo)}`:""}</span>`:"";
-  vals.forEach(v=>{if(ok(v.r)){const t=totals[v.s]||(totals[v.s]={sum:0,n:0});t.sum+=v.r.precio;t.n++}});
-  allSeries[p.id]=vals.map(v=>({...serie(v.r),store:v.s,name:NOMBRES[v.s]||v.s,c:col(v.s),nostock:v.r.stock===false}));
-  return `<section class="item"><img src="img/${p.id}.jpg" alt="${esc(p.nombre)}" loading="lazy" onerror="this.onerror=null;this.src=PH">
-  <div style="min-width:0"><h2>${esc(p.nombre)}</h2><div class="det">${esc(p.detalle)}${p.mpn?` · <span class="mpn">${esc(p.mpn)}</span>`:""}${obj?` · ${obj}`:""}</div>
-  <div class="stores">${vals.map(v=>{
-    const h=v.r.historial||[];const prev=h.length>1?h[h.length-2][1]:null;
-    const diff=prev!=null&&v.r.precio!=null?v.r.precio-prev:null;
-    const best=ok(v.r)&&v.r.precio===min&&prices.length>1;
-    const hmin=v.r.precio!=null&&h.length>=3&&v.r.precio<=Math.min(...h.map(x=>x[1]));
-    return `<div class="s${best?" best":""}${v.r.precio!=null&&v.r.stock===false?" nostock":""}"><div class="n"><span><i class="sw" style="background:${col(v.s)}"></i>${NOMBRES[v.s]||v.s}</span><a href="${esc(v.u)}" target="_blank" rel="noopener">Abrir</a></div>
-    <div class="p${v.r.precio==null?" none":""}">${v.r.precio!=null?eur(v.r.precio):"Sin precio"}</div>
-    ${v.r.precio==null&&v.r.ultimo!=null?`<div class="old">Último conocido: ${eur(v.r.ultimo)} (${fecha(v.r.ultimo_fecha)})</div>`:""}
-    ${diff?`<div class="d ${diff<0?"down":"up"}">${diff<0?"▼":"▲"} ${eur(Math.abs(diff))}</div>`:""}
-    ${v.r.precio!=null&&v.r.origen==="fuera"?`<div class="e" title="Leído desde fuera de España (GitHub): Amazon enseña otras ofertas y sin IVA; se ha sumado el 21 %">estimado, leído desde fuera de España</div>`:""}
-    ${v.r.precio!=null&&v.r.stock===false?`<div class="e">Sin stock</div>`:""}
-    ${CESTA&&CESTA.asig[p.id]===v.s?`<div class="pk">✓ En la mejor cesta</div>`:""}
-    ${hmin?`<div class="pk" title="El precio más bajo que se ha visto en esta tienda">★ Mínimo histórico</div>`:""}
-    ${v.r.error?`<div class="e">${esc(v.r.error)}</div>`:""}</div>`}).join("")}</div>
-  <div class="chart" data-id="${p.id}"></div></div></section>`}).join("");
-document.querySelectorAll(".chart[data-id]").forEach(el=>{const p=D.productos.find(x=>x.id===el.dataset.id);lineChart(el,allSeries[el.dataset.id],{label:"Evolución del precio de "+p.nombre})});
+/* ---- Las piezas ---- */
+const okR=r=>!!r&&r.precio!=null&&r.stock!==false;
+const nom=s=>NOMBRES[s]||s;
+const lista=a=>a.length<2?a[0]:a.slice(0,-1).join(", ")+" y "+a[a.length-1];
+const redond=n=>Math.round(n*100)/100;
+const CESTA=mejorCesta(D.productos.map(p=>{const r=D.precios[p.id]||{},of={};
+  Object.entries(p.tiendas).forEach(([s,u])=>{if(u&&okR(r[s]))of[s]=r[s].precio});return {id:p.id,of}}));
+const allSeries={};
+const piezas=D.productos.map(p=>{
+  const r=D.precios[p.id]||{};
+  const asig=CESTA&&CESTA.asig[p.id]||null;
+  const offers=Object.entries(p.tiendas).filter(([,u])=>u).map(([s,u])=>{
+    const x=r[s]||{},h=x.historial||[];
+    return {s,u,x,ok:okR(x),low:x.precio!=null&&h.length>=3&&x.precio<=Math.min(...h.map(e=>e[1]))}});
+  offers.sort((a,b)=>(b.ok-a.ok)||(a.ok?a.x.precio-b.x.precio:0));
+  allSeries[p.id]=offers.map(o=>({...serie(o.x),store:o.s,name:nom(o.s),nostock:o.x.stock===false}));
+  const min=offers.filter(o=>o.ok).reduce((m,o)=>Math.min(m,o.x.precio),Infinity);
+  return {p,offers,asig,chosen:offers.find(o=>o.s===asig)||null,min};
+});
 
-const envTxt=(s,sum)=>{const e=envio(s,sum);return e?`+ ${aprox(s)}${eur(e)} envío`:"envío gratis"};
-/* Más piezas cubiertas primero (un total con 3 de 9 piezas no es «más barato»), y a igualdad, el menor */
-document.getElementById("sum").innerHTML=Object.entries(totals).map(([s,t])=>({s,t,tot:t.sum+envio(s,t.sum)}))
-  .sort((a,b)=>b.t.n-a.t.n||a.tot-b.tot)
-  .map(({s,t,tot})=>`<div${t.n<D.productos.length?` title="Faltan ${pz(D.productos.length-t.n)} sin precio o sin stock en esta tienda: el total no es comparable"`:""}><small>Todo en ${NOMBRES[s]||s} (${t.n}/${D.productos.length}) · ${envTxt(s,t.sum)}</small><b>${eur(tot)}</b></div>`).join("")+
-  (CESTA?`<div class="mix"><small>Mejor combinación con envío (${CESTA.n}/${D.productos.length})</small><b>${eur(CESTA.total)}</b></div>`:"");
+/* Por qué no se ve un precio, en pocas palabras (el texto completo queda en el tooltip) */
+function nota(x){const e=x.error||"";
+  if(/^no disponible/.test(e))return "No disponible";
+  if(/sospechoso|brusco/.test(e))return "Por confirmar";
+  if(/enlace roto/.test(e))return "Enlace roto";
+  if(/no visible/.test(e))return "No visible";
+  return e?"No se puede leer":"Sin precio"}
+const objetivoTxt=m=>{const o=m.p.objetivo;if(!(o>0))return "";
+  return isFinite(m.min)&&m.min<=o?`✓ Objetivo ${eur(o)} alcanzado`:`Objetivo ${eur(o)}${isFinite(m.min)?` · faltan ${eur(m.min-o)}`:""}`};
+const objetivoOk=m=>m.p.objetivo>0&&isFinite(m.min)&&m.min<=m.p.objetivo;
 
-/* Panel «Dónde comprar cada pieza» */
-(function(){
-  if(!CESTA){document.getElementById("cestapanel").hidden=true;return}
-  const nom=id=>(D.productos.find(p=>p.id===id)||{}).nombre||id;
-  const orden=Object.entries(CESTA.tiendas).sort((a,b)=>b[1].sum-a[1].sum);
-  document.getElementById("cesta").innerHTML=orden.map(([s,g])=>{const e=ENV[s]||{};
-    const falta=e.gratis_desde!=null&&g.envio?` (gratis desde ${eur(e.gratis_desde)})`:"";
-    return `<div><div class="n"><i class="sw" style="background:${col(s)}"></i>${NOMBRES[s]||s}</div>
-    <ul>${g.ids.map(id=>`<li>${esc(nom(id))}</li>`).join("")}</ul>
-    <div class="r"><span>Piezas</span><b>${eur(g.sum)}</b></div>
-    <div class="r"><span title="${esc(e.info||"")}">Envío${falta}</span><b>${g.envio?aprox(s)+eur(g.envio):"gratis"}</b></div></div>`}).join("");
-  const env=orden.reduce((t,[,g])=>t+g.envio,0);
-  const faltan=D.productos.length-CESTA.n;
-  document.getElementById("cestatot").innerHTML=`<span>Total con envío${env?` (${eur(env)} de envíos)`:""}${faltan?` · ${faltan===1?"falta":"faltan"} ${pz(faltan)} sin precio`:""}</span><b>${eur(CESTA.total)}</b>`;
-})();
+function ofertaHtml(m,o){
+  const x=o.x,ch=m.chosen,d=[];
+  if(o.ok&&ch&&o.s!==ch.s){const df=redond(x.precio-ch.x.precio);d.push(df===0?"mismo precio":(df>0?"+":"−")+eur(Math.abs(df)))}
+  if(x.precio==null&&x.ultimo!=null)d.push(`último ${eur(x.ultimo)}`);
+  if(o.ok&&x.origen==="fuera")d.push(`<span title="Leído desde fuera de España: Amazon enseña otras ofertas y sin IVA; se ha sumado el 21 %">estimado</span>`);
+  const valor=o.ok?eur(x.precio):x.precio!=null&&x.stock===false?"Sin stock":nota(x);
+  return `<div class="of"><span class="n">${nom(o.s)}${o.s===m.asig?`<span class="tag">Elegida</span>`:""}${o.low?`<span class="tag">★ Mínimo histórico</span>`:""}</span>
+    <span class="d num">${d.join(" · ")}</span><span class="v num${o.ok?"":" no"}"${o.ok?"":` title="${esc(x.error||"")}"`}>${valor}</span>
+    <a href="${esc(o.u)}" target="_blank" rel="noopener" aria-label="Abrir ${esc(m.p.nombre)} en ${nom(o.s)}">Abrir</a></div>`;
+}
+/* Frases que explican por qué la tienda elegida no es siempre la de precio más bajo */
+function explicaciones(m){
+  const ch=m.chosen,n=[];
+  if(!ch)return `<p class="why">Ahora mismo ninguna tienda da un precio disponible de esta pieza.</p>`;
+  const baratas=m.offers.filter(o=>o.ok&&o.x.precio<ch.x.precio-.005);
+  if(baratas.length)n.push(`${nom(baratas[0].s)} es ${eur(ch.x.precio-baratas[0].x.precio)} más barata, pero con el envío del pedido el total sale mejor comprándola en ${nom(ch.s)}.`);
+  const sin=m.offers.filter(o=>o.x.precio!=null&&o.x.stock===false&&o.x.precio<ch.x.precio-.005).map(o=>nom(o.s));
+  if(sin.length)n.push(`${lista(sin)} ${sin.length>1?"son más baratas":"es más barata"}, pero ahora no ${sin.length>1?"tienen":"tiene"} stock.`);
+  return n.map(t=>`<p class="why">${t}</p>`).join("");
+}
+function filaHtml(m){
+  const {p,chosen}=m,id="d-"+p.id,obj=objetivoTxt(m);
+  return `<div class="row"><button type="button" class="rb" aria-expanded="false" aria-controls="${id}">
+    <span class="t"><b>${esc(p.nombre)}</b><small>${esc(p.detalle)}</small></span>
+    ${objetivoOk(m)?`<span class="tag">✓ Objetivo</span>`:""}${chosen&&chosen.low?`<span class="tag">★ Mínimo</span>`:""}
+    <span class="p num">${chosen?eur(chosen.x.precio):"Sin precio"}</span>
+    <svg class="chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6.5l4 4 4-4"/></svg></button>
+    <div class="det" id="${id}" hidden>
+      <p class="sub" style="margin:0 0 12px">${esc(p.detalle)}${p.mpn?` · <span class="num">${esc(p.mpn)}</span>`:""}${obj?` · <b style="color:var(--${objetivoOk(m)?"acc":"ink"})">${obj}</b>`:""}</p>
+      <p class="sub" style="margin:0 0 4px;font-size:13px">Precio en cada tienda</p>
+      ${m.offers.map(o=>ofertaHtml(m,o)).join("")}${explicaciones(m)}
+      <div class="chart" data-id="${p.id}"></div>
+    </div></div>`;
+}
 
-/* Total de la mejor combinación en cada momento en que cambió algún precio */
-(function(){
-  const ss=Object.values(allSeries).flat().filter(s=>s.pts&&s.pts.length);
-  const times=[...new Set(ss.flatMap(s=>[...s.pts.map(p=>p[0]),s.end]))].sort((a,b)=>a-b);
-  const pts=[];let last=null;
-  const cs=times.map(t=>[t,mejorCesta(Object.keys(allSeries).map(id=>{const of={};
-    allSeries[id].forEach(s=>{const v=s.pts&&s.pts.length&&!s.nostock?valorEn(s,t):null;if(v!=null)of[s.store]=v});return {id,of}}))]).filter(([,c])=>c);
-  const maxN=Math.max(0,...cs.map(([,c])=>c.n));  /* una cesta con menos piezas saldría más barata sin serlo */
-  cs.filter(([,c])=>c.n===maxN).forEach(([t,c])=>{if(c.total!==last){pts.push([t,c.total]);last=c.total}});
-  const el=document.getElementById("totchart");
-  if(!pts.length){document.getElementById("totpanel").hidden=true;return}
-  lineChart(el,[{pts,end:times[times.length-1],name:"Mejor combinación",c:"var(--s-total)"}],{h:180,legend:false,label:"Evolución del total de la mejor combinación"});
-})();
+/* ---- Cabecera ---- */
+document.getElementById("upd").textContent=D.actualizado?"Actualizado el "+new Date(D.actualizado).toLocaleString("es-ES",{day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})+
+  (AES.actualizado?" · Amazon desde casa: "+new Date(AES.actualizado).toLocaleString("es-ES",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):""):"Aún no hay datos. Ejecuta el vigilante.";
 /* Si el vigilante lleva horas sin actualizar, que se note */
 (function(){
   const h=(Date.now()-NOW)/36e5;if(!D.actualizado||h<=8)return;
@@ -287,7 +282,65 @@ document.getElementById("sum").innerHTML=Object.entries(totals).map(([s,t])=>({s
   el.textContent=`Los precios tienen ${h>48?Math.round(h/24)+" días":Math.round(h)+" h"} (se actualizan cada 3 h): puede que el vigilante esté parado. Revisa la pestaña Actions del repositorio.`;
 })();
 
-/* Cambios de precio de las últimas 48 h, de más reciente a más antiguo */
+/* ---- Total de hoy ---- */
+(function(){
+  const hero=document.getElementById("hero");
+  if(!CESTA){hero.innerHTML=`<p class="txt" style="color:var(--mute)">Aún no hay precios disponibles.</p>`;return}
+  const k=Object.keys(CESTA.tiendas).length,env=Object.values(CESTA.tiendas).reduce((t,g)=>t+g.envio,0);
+  const aprox=Object.entries(CESTA.tiendas).some(([s,g])=>g.envio&&ENV[s]&&ENV[s].aprox);
+  const faltan=D.productos.length-CESTA.n;
+  const piezasTxt=faltan?`${CESTA.n} de ${D.productos.length} piezas (${faltan===1?"falta 1 sin precio":`faltan ${faltan} sin precio`})`:D.productos.length===1?"La pieza":`Las ${CESTA.n} piezas`;
+  hero.innerHTML=`<p class="sub" style="margin:0">Si compras hoy, pagas</p><p class="big num">${eur(CESTA.total)}</p>
+    <p class="txt">${piezasTxt}, en ${k===1?"1 tienda":k+" tiendas"}. ${env?`Incluye ${aprox?"≈ ":""}${eur(env)} de envío.`:k===1?"Envío gratis.":"Envío gratis en todas."}</p>
+    <div id="totwrap" hidden><p class="sub" style="margin-top:24px">Evolución del total</p><div class="chart" id="totchart"></div></div>`;
+  /* Total de la mejor combinación en cada momento en que cambió algún precio; solo con la cesta completa
+     (una con menos piezas saldría más barata sin serlo) */
+  const ss=Object.values(allSeries).flat().filter(s=>s.pts&&s.pts.length);
+  const times=[...new Set(ss.flatMap(s=>[...s.pts.map(p=>p[0]),s.end]))].sort((a,b)=>a-b);
+  const cs=times.map(t=>[t,mejorCesta(Object.keys(allSeries).map(id=>{const of={};
+    allSeries[id].forEach(s=>{const v=s.pts&&s.pts.length&&!s.nostock?valorEn(s,t):null;if(v!=null)of[s.store]=v});return {id,of}}))]).filter(([,c])=>c);
+  const maxN=Math.max(0,...cs.map(([,c])=>c.n)),pts=[];let last=null;
+  cs.filter(([,c])=>c.n===maxN).forEach(([t,c])=>{if(c.total!==last){pts.push([t,c.total]);last=c.total}});
+  const vs=pts.map(p=>p[1]);
+  if(pts.length<2||Math.max(...vs)-Math.min(...vs)<CESTA.total*.005)return;  /* si apenas varía, no aporta */
+  document.getElementById("totwrap").hidden=false;
+  lineChart(document.getElementById("totchart"),[{pts,end:times[times.length-1],name:"Mejor combinación",c:"var(--acc)"}],{h:120,legend:false,label:"Evolución del total de la mejor combinación"});
+})();
+
+/* ---- Qué comprar y dónde ---- */
+(function(){
+  const cont=document.getElementById("grupos");
+  const fila=id=>filaHtml(piezas.find(m=>m.p.id===id));
+  const grupos=CESTA?Object.entries(CESTA.tiendas).sort((a,b)=>b[1].sum-a[1].sum):[];
+  let html=grupos.map(([s,g])=>{const e=ENV[s]||{};
+    const envTxt=g.envio?`+ ${aprox(s)}${eur(g.envio)} de envío${e.gratis_desde!=null?` (gratis desde ${eur(e.gratis_desde)})`:""}`:"envío gratis";
+    return `<div class="grp"><div class="gh"><h3>${nom(s)}</h3><p class="sub num">${pz(g.ids.length)} · ${envTxt} · <b>${eur(g.sum)}</b></p></div>
+      ${D.productos.filter(p=>g.ids.includes(p.id)).map(p=>fila(p.id)).join("")}</div>`}).join("");
+  const sin=D.productos.filter(p=>!(CESTA&&CESTA.asig[p.id]));
+  if(sin.length)html+=`<div class="grp"><div class="gh"><h3>Sin precio ahora mismo</h3><p class="sub">${pz(sin.length)}</p></div>${sin.map(p=>fila(p.id)).join("")}</div>`;
+  cont.innerHTML=html;
+  /* El gráfico de cada pieza se dibuja al abrirla (oculto no tiene ancho): la tienda elegida en color, las demás en gris */
+  cont.addEventListener("click",e=>{
+    const b=e.target.closest(".rb");if(!b)return;
+    const det=document.getElementById(b.getAttribute("aria-controls")),abrir=b.getAttribute("aria-expanded")!=="true";
+    b.setAttribute("aria-expanded",abrir);det.hidden=!abrir;
+    const el=det.querySelector(".chart");
+    if(abrir&&el&&!el.dataset.listo){el.dataset.listo=1;
+      const m=piezas.find(x=>x.p.id===el.dataset.id);
+      el.insertAdjacentHTML("beforebegin",`<p class="sub" style="margin:16px 0 0;font-size:13px">Evolución del precio${m.asig?" · en verde, la tienda elegida":""}</p>`);
+      lineChart(el,allSeries[m.p.id].map(s=>({...s,c:s.store===m.asig?"var(--acc)":"var(--axis)"})),{h:150,legend:false,label:"Evolución del precio de "+m.p.nombre})}
+  });
+  const primero=cont.querySelector(".rb");if(primero)primero.click();  /* la primera pieza se ve abierta, como ejemplo */
+
+  /* Comparación con comprarlo todo en una sola tienda */
+  const totals={};
+  piezas.forEach(m=>m.offers.forEach(o=>{if(o.ok){const t=totals[o.s]||(totals[o.s]={sum:0,n:0});t.sum+=o.x.precio;t.n++}}));
+  const filas=Object.entries(totals).map(([s,t])=>({s,t,tot:t.sum+envio(s,t.sum)})).sort((a,b)=>b.t.n-a.t.n||a.tot-b.tot);
+  if(filas.length>1)document.getElementById("solo").innerHTML=`<details class="solo"><summary>Si lo compraras todo en una sola tienda</summary>
+    ${filas.map(({s,t,tot})=>`<div class="of"><span class="n">${nom(s)}</span><span class="d">${t.n} de ${D.productos.length} piezas · ${envio(s,t.sum)?`+ ${aprox(s)}${eur(envio(s,t.sum))} de envío`:"envío gratis"}</span><span class="v num">${eur(tot)}</span></div>`).join("")}</details>`;
+})();
+
+/* ---- Cambios de las últimas 48 h, de más reciente a más antiguo ---- */
 (function(){
   const lim=NOW-48*36e5,ev=[];
   D.productos.forEach(p=>Object.entries(D.precios[p.id]||{}).forEach(([s,r])=>{const h=r.historial||[];
@@ -295,9 +348,10 @@ document.getElementById("sum").innerHTML=Object.entries(totals).map(([s,t])=>({s
   if(!ev.length)return;
   ev.sort((x,y)=>y.t-x.t);
   document.getElementById("cambiospanel").hidden=false;
-  document.getElementById("cambios").innerHTML=ev.slice(0,8).map(e=>{const d=e.a-e.de;
-    return `<li><span class="d ${d<0?"down":"up"}">${d<0?"▼":"▲"} ${eur(Math.abs(d))}</span> <b>${esc(e.p.nombre)}</b> en <i class="sw" style="background:${col(e.s)}"></i>${NOMBRES[e.s]||e.s}: ${eur(e.de)} → ${eur(e.a)} <small>${fecha(e.t)}</small></li>`}).join("")+
-    (ev.length>8?`<li><small>… y ${ev.length-8} cambios más</small></li>`:"");
+  document.getElementById("cambios").innerHTML=ev.slice(0,5).map(e=>{const d=e.a-e.de;
+    return `<div class="chg"><span class="t"><b>${esc(e.p.nombre)}</b><small>${nom(e.s)} · ${fecha(e.t)}</small></span>
+      <span class="r num">${eur(e.de)} → ${eur(e.a)}</span><span class="dl num ${d<0?"dn":"up"}">${eur(Math.abs(d))} ${d<0?"baja":"sube"}</span></div>`}).join("")+
+    (ev.length>5?`<p class="sub" style="padding:14px 8px;border-top:1px solid var(--line);margin:0">… y ${ev.length-5} ${ev.length-5===1?"cambio más":"cambios más"}.</p>`:"");
 })();
 let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>CHARTS.forEach(([el,s,o])=>lineChart(el,s,{...o,_again:true})),150)});
 </script>
