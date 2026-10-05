@@ -17,14 +17,16 @@ Vigila los precios de tus componentes, te avisa al móvil cuando bajan y los mue
 pip install requests
 NTFY_TOPIC=tu-canal python vigilante.py
 ```
-Luego abre `index.html` con doble clic: verás los precios, la imagen de cada componente (se guardan en `img/`) y un gráfico con la evolución del precio en cada tienda, además del total de la mejor combinación. Pasa el ratón (o toca) sobre un gráfico para ver los precios de cada momento.
+Luego abre `index.html` con doble clic. La página es deliberadamente sencilla y responde a una pregunta: **cuánto me cuesta comprarlo todo hoy**.
 
-Además de los precios, la página te dice:
-
-- **Dónde comprar cada pieza** para que el total, con envíos, sea el menor posible.
+- **Arriba, el total** de la combinación más barata, con los envíos incluidos.
+- **Qué comprar y dónde**: las piezas agrupadas por tienda, cada una con su subtotal. Pulsa una pieza para ver su precio en todas las tiendas (la diferencia con la elegida, el enlace «Abrir» y por qué no se compra en la más barata: envío o falta de stock) y un gráfico con su evolución. Pasa el ratón (o toca) sobre el gráfico para ver el precio de cada momento.
 - **Cambios recientes**: las subidas y bajadas de las últimas 48 horas.
-- **★ Mínimo histórico** en las tiendas cuyo precio actual es el más bajo que han tenido, y cuánto falta para tu `objetivo`.
-- Un **aviso amarillo** si los datos llevan más de 8 horas sin actualizarse (señal de que el vigilante está parado).
+- **★ Mínimo histórico** y **✓ Objetivo** junto a las piezas que lo cumplen, y cuánto falta para tu `objetivo`.
+- «Si lo compraras todo en una sola tienda», plegado, para comparar con el total.
+- Un **aviso amarillo** si los datos llevan más de 8 horas sin actualizarse (señal de que el vigilante está parado), y el gráfico de evolución del total solo si ha variado de forma apreciable.
+
+Las imágenes de `img/` ya no se muestran en la página (el vigilante las sigue guardando por si se quieren recuperar).
 
 Para ejecutar las pruebas: `python -m unittest discover -s tests`.
 
