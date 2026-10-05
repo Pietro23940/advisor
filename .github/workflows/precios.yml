@@ -28,11 +28,16 @@ jobs:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           PRUEBA_AVISO: ${{ inputs.prueba_aviso }}
       - name: Guardar precios
+        if: ${{ !cancelled() }}  # también si el vigilante terminó con error: así quedan anotados los fallos de lectura
         run: |
           git config user.name "vigilante-precios"
           git config user.email "actions@users.noreply.github.com"
           git add data img
           git diff --cached --quiet && exit 0
           git commit -m "Actualizar precios"
-          git pull --rebase -X theirs origin main
-          git push
+          for _ in 1 2 3; do
+            git pull -q --rebase -X theirs origin main && git push -q && exit 0
+            sleep 20
+          done
+          echo "No se pudo subir a GitHub" >&2
+          exit 1
