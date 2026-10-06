@@ -9,11 +9,11 @@
    ],
    "fuente": "casa",
    "url": "https://www.amazon.es/dp/B0BTZB7F88",
-   "comprobado": "2026-10-06T12:52+00:00",
+   "comprobado": "2026-10-06T13:47+00:00",
    "error": null,
    "origen": "ES",
    "precio": 309.99,
-   "fecha_precio": "2026-10-06T12:52+00:00"
+   "fecha_precio": "2026-10-06T13:47+00:00"
   }
  },
  "cooler": {
@@ -30,11 +30,11 @@
    ],
    "fuente": "casa",
    "url": "https://www.amazon.es/dp/B09NSTR7JZ",
-   "comprobado": "2026-10-06T12:52+00:00",
+   "comprobado": "2026-10-06T13:47+00:00",
    "error": null,
    "origen": "ES",
    "precio": 31.95,
-   "fecha_precio": "2026-10-06T12:52+00:00"
+   "fecha_precio": "2026-10-06T13:47+00:00"
   }
  },
  "paste": {
@@ -63,11 +63,11 @@
    ],
    "fuente": "casa",
    "url": "https://www.amazon.es/dp/B0FT2TYMR6",
-   "comprobado": "2026-10-06T12:52+00:00",
+   "comprobado": "2026-10-06T13:47+00:00",
    "error": null,
    "origen": "ES",
    "precio": 10.32,
-   "fecha_precio": "2026-10-06T12:52+00:00"
+   "fecha_precio": "2026-10-06T13:47+00:00"
   }
  },
  "gpu": {
@@ -75,7 +75,7 @@
    "historial": [],
    "fuente": "casa",
    "url": "https://www.amazon.es/dp/B096Y2TYKV",
-   "comprobado": "2026-10-06T12:52+00:00",
+   "comprobado": "2026-10-06T13:47+00:00",
    "error": "no disponible en Amazon",
    "precio": null
   }
@@ -102,15 +102,19 @@
     [
      "2026-10-06T12:52+00:00",
      320.16
+    ],
+    [
+     "2026-10-06T13:47+00:00",
+     288.99
     ]
    ],
    "fuente": "casa",
    "url": "https://www.amazon.es/dp/B0GQC6MV6C",
-   "comprobado": "2026-10-06T12:52+00:00",
+   "comprobado": "2026-10-06T13:47+00:00",
    "error": null,
    "origen": "ES",
-   "precio": 320.16,
-   "fecha_precio": "2026-10-06T12:52+00:00"
+   "precio": 288.99,
+   "fecha_precio": "2026-10-06T13:47+00:00"
   }
  },
  "mb": {
@@ -131,11 +135,11 @@
    ],
    "fuente": "casa",
    "url": "https://www.amazon.es/dp/B0DP5DQPRC",
-   "comprobado": "2026-10-06T12:52+00:00",
+   "comprobado": "2026-10-06T13:47+00:00",
    "error": null,
    "origen": "ES",
    "precio": 157.99,
-   "fecha_precio": "2026-10-06T12:52+00:00"
+   "fecha_precio": "2026-10-06T13:47+00:00"
   }
  },
  "ssd": {
@@ -172,11 +176,11 @@
    ],
    "fuente": "casa",
    "url": "https://www.amazon.es/dp/B0DGHB9V34",
-   "comprobado": "2026-10-06T12:52+00:00",
+   "comprobado": "2026-10-06T13:47+00:00",
    "error": null,
    "origen": "ES",
    "precio": 364.2,
-   "fecha_precio": "2026-10-06T12:52+00:00"
+   "fecha_precio": "2026-10-06T13:47+00:00"
   }
  },
  "case": {
@@ -189,11 +193,11 @@
    ],
    "fuente": "casa",
    "url": "https://www.amazon.es/dp/B0F49555MM",
-   "comprobado": "2026-10-06T12:52+00:00",
+   "comprobado": "2026-10-06T13:47+00:00",
    "error": null,
    "origen": "ES",
    "precio": 89.99,
-   "fecha_precio": "2026-10-06T12:52+00:00"
+   "fecha_precio": "2026-10-06T13:47+00:00"
   }
  },
  "psu": {
@@ -210,11 +214,11 @@
    ],
    "fuente": "casa",
    "url": "https://www.amazon.es/dp/B0CK8NDN1Q",
-   "comprobado": "2026-10-06T12:52+00:00",
+   "comprobado": "2026-10-06T13:47+00:00",
    "error": null,
    "origen": "ES",
    "precio": 52.9,
-   "fecha_precio": "2026-10-06T12:52+00:00"
+   "fecha_precio": "2026-10-06T13:47+00:00"
   }
  }
 }
