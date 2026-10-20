@@ -33,8 +33,8 @@
    ],
    "fuente": "proxy",
    "url": "https://www.amazon.es/dp/B0BTZB7F88",
-   "comprobado": "2026-10-20T00:23+00:00",
-   "error": "proxy sin respuesta",
+   "comprobado": "2026-10-20T08:36+00:00",
+   "error": "no visible desde fuera de España (US)",
    "precio": null,
    "fecha_precio": "2026-10-19T13:22+00:00",
    "origen": "fuera",
@@ -45,7 +45,7 @@
    "historial": [],
    "stock": null,
    "url": "https://www.pccomponentes.com/amd-ryzen-7-7800x3d-42-ghz-5-ghz",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": "protegido (Cloudflare)",
    "precio": null
   },
@@ -58,10 +58,10 @@
    ],
    "stock": true,
    "url": "https://www.neobyte.es/amd-ryzen-7-7800x3d-procesador-am5-17301.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 339.89,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "coolmod": {
    "historial": [
@@ -84,10 +84,10 @@
    ],
    "stock": true,
    "url": "https://www.coolmod.com/amd-ryzen-7-7800x-3d-5-0ghz-socket-am5-boxed/",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 349.95,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "pcbox": {
    "historial": [
@@ -118,10 +118,10 @@
    ],
    "stock": true,
    "url": "https://www.pcbox.com/100-100000910wof-amd-ryzen-7-7800x3d--4-2ghz-socket-am5-120/p",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 367.92,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "alternate": {
    "historial": [
@@ -132,10 +132,10 @@
    ],
    "stock": true,
    "url": "https://www.alternate.es/AMD/Ryzen-7-7800X3D-Procesador/html/product/1898270",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 419.0,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "ldlc": {
    "historial": [
@@ -146,10 +146,10 @@
    ],
    "stock": true,
    "url": "https://www.ldlc.com/es-es/ficha/PB00546345.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 519.95,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   }
  },
  "cooler": {
@@ -162,8 +162,8 @@
    ],
    "fuente": "proxy",
    "url": "https://www.amazon.es/dp/B09NSTR7JZ",
-   "comprobado": "2026-10-20T00:23+00:00",
-   "error": "proxy sin respuesta",
+   "comprobado": "2026-10-20T08:36+00:00",
+   "error": "no visible desde fuera de España (US)",
    "precio": null,
    "fecha_precio": "2026-10-04T02:34+00:00",
    "ultimo": 37.59,
@@ -173,7 +173,7 @@
    "historial": [],
    "stock": null,
    "url": "https://www.pccomponentes.com/ventilador-cpu-refrigeracion-aire-thermalright-socket-am4-am5-lga1200-120mm-peerless-assassin-120-se-doble-torre-negro",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": "protegido (Cloudflare)",
    "precio": null
   },
@@ -186,10 +186,10 @@
    ],
    "stock": true,
    "url": "https://www.coolmod.com/thermalright-peerless-assassin-120-se-negro/",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 76.96,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "ldlc": {
    "historial": [
@@ -200,10 +200,10 @@
    ],
    "stock": false,
    "url": "https://www.ldlc.com/es-es/ficha/PB00581740.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 41.75,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   }
  },
  "paste": {
@@ -230,21 +230,19 @@
      14.65
     ]
    ],
-   "fuente": "proxy",
+   "fuente": "directo",
    "url": "https://www.amazon.es/dp/B0FT2TYMR6",
-   "comprobado": "2026-10-20T00:23+00:00",
-   "error": "proxy sin respuesta",
-   "precio": null,
-   "fecha_precio": "2026-10-19T13:22+00:00",
-   "origen": "fuera",
-   "ultimo": 14.65,
-   "ultimo_fecha": "2026-10-19T13:22+00:00"
+   "comprobado": "2026-10-20T08:36+00:00",
+   "error": null,
+   "precio": 14.65,
+   "fecha_precio": "2026-10-20T08:36+00:00",
+   "origen": "fuera"
   },
   "pccomponentes": {
    "historial": [],
    "stock": null,
    "url": "https://www.pccomponentes.com/pasta-termica-arctic-mx-7-actcp00090a-4-gramos-maxima-conductividad-617-w-mk",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": "protegido (Cloudflare)",
    "precio": null
   },
@@ -257,10 +255,13 @@
    ],
    "stock": true,
    "url": "https://www.alternate.es/Arctic/MX-7-Pasta-t%C3%A9rmica-Conductores-t%C3%A9rmicos-grasa-disco-/html/product/100162945",
-   "comprobado": "2026-10-20T00:23+00:00",
-   "error": null,
-   "precio": 5.19,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "comprobado": "2026-10-20T08:36+00:00",
+   "error": "precio sospechoso (5.19 € frente a 13.30 € en otras tiendas)",
+   "precio": null,
+   "fecha_precio": "2026-10-20T00:23+00:00",
+   "restock": false,
+   "ultimo": 5.19,
+   "ultimo_fecha": "2026-10-20T00:23+00:00"
   },
   "ldlc": {
    "historial": [
@@ -271,10 +272,10 @@
    ],
    "stock": true,
    "url": "https://www.ldlc.com/es-es/ficha/PB00717979.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 11.95,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   }
  },
  "gpu": {
@@ -285,10 +286,10 @@
      622.09
     ]
    ],
-   "fuente": "proxy",
+   "fuente": "directo",
    "url": "https://www.amazon.es/dp/B096Y2TYKV",
-   "comprobado": "2026-10-20T00:23+00:00",
-   "error": "proxy sin respuesta",
+   "comprobado": "2026-10-20T08:36+00:00",
+   "error": "no visible desde fuera de España (MX)",
    "precio": null,
    "origen": "ES",
    "fecha_precio": "2026-10-12T10:55+00:00",
@@ -299,7 +300,7 @@
    "historial": [],
    "stock": null,
    "url": "https://www.pccomponentes.com/gigabyte-geforce-rtx-3060-gaming-oc-12gb-gddr6",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": "protegido (Cloudflare)",
    "precio": null
   },
@@ -312,10 +313,10 @@
    ],
    "stock": false,
    "url": "https://www.neobyte.es/tarjeta-grafica-gigabyte-rtx-3060-gaming-oc-12gb-9490.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 285.9,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "coolmod": {
    "historial": [
@@ -326,10 +327,10 @@
    ],
    "stock": true,
    "url": "https://www.coolmod.com/gigabyte-geforce-rtx-3060-gaming-oc-lhr-12gb-gddr6-vga/",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 349.94,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "pcbox": {
    "historial": [
@@ -340,10 +341,10 @@
    ],
    "stock": false,
    "url": "https://www.pcbox.com/9vn3060go-00-20-tarjeta-grafica-12gb-gigabyte-geforce-rtx-3060-gaming-oc-lhr-pc/p",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 308.9,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "ldlc": {
    "historial": [
@@ -354,10 +355,10 @@
    ],
    "stock": true,
    "url": "https://www.ldlc.com/es-es/ficha/PB00408449.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 538.95,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   }
  },
  "ram": {
@@ -380,10 +381,10 @@
      387.21
     ]
    ],
-   "fuente": "proxy",
+   "fuente": "directo",
    "url": "https://www.amazon.es/dp/B0GQC6MV6C",
-   "comprobado": "2026-10-20T00:23+00:00",
-   "error": "proxy sin respuesta",
+   "comprobado": "2026-10-20T08:36+00:00",
+   "error": "no visible desde fuera de España (MX)",
    "precio": null,
    "fecha_precio": "2026-10-19T20:36+00:00",
    "origen": "fuera",
@@ -394,7 +395,7 @@
    "historial": [],
    "stock": null,
    "url": "https://www.pccomponentes.com/memoria-ram-corsair-vengeance-rgb-16gb-2x8gb-ddr5-6000mhz-cl36-amd-expo-intel-xmp-gris",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": "protegido (Cloudflare)",
    "precio": null
   },
@@ -407,10 +408,10 @@
    ],
    "stock": false,
    "url": "https://www.neobyte.es/corsair-vengeance-rgb-16gb-2x8gb-ddr5-6000mhz-cl36-dual-profile-memoria-ram-33327.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 329.89,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "coolmod": {
    "historial": [
@@ -421,10 +422,10 @@
    ],
    "stock": true,
    "url": "https://www.coolmod.com/corsair-vengeance-rgb-16gb-2x8gb-6000mhz-cl36-expo-xmp-gris/",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 306.95,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "pcbox": {
    "historial": [
@@ -447,10 +448,10 @@
    ],
    "stock": false,
    "url": "https://www.pcbox.com/cmh16gx5m2e6000z36-memoria-corsair-ddr5-16gb-2x8gb-pc6000-vengeance-rgb-cmh16gx/p",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 319.6,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   }
  },
  "mb": {
@@ -475,17 +476,19 @@
     [
      "2026-10-14T17:14+00:00",
      296.72
+    ],
+    [
+     "2026-10-20T08:36+00:00",
+     338.18
     ]
    ],
-   "fuente": "proxy",
+   "fuente": "directo",
    "url": "https://www.amazon.es/dp/B0DP5DQPRC",
-   "comprobado": "2026-10-20T00:23+00:00",
-   "error": "proxy sin respuesta",
-   "precio": null,
-   "fecha_precio": "2026-10-19T20:36+00:00",
-   "origen": "fuera",
-   "ultimo": 296.72,
-   "ultimo_fecha": "2026-10-19T20:36+00:00"
+   "comprobado": "2026-10-20T08:36+00:00",
+   "error": null,
+   "precio": 338.18,
+   "fecha_precio": "2026-10-20T08:36+00:00",
+   "origen": "fuera"
   },
   "pccomponentes": {
    "historial": [
@@ -496,7 +499,7 @@
    ],
    "stock": true,
    "url": "https://www.pccomponentes.com/placa-base-asus-tuf-gaming-b850-plus-wifi",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": "protegido (Cloudflare)",
    "precio": null,
    "fecha_precio": "2026-10-04T04:05+00:00",
@@ -528,10 +531,10 @@
    ],
    "stock": true,
    "url": "https://www.neobyte.es/asus-tuf-gaming-b850-plus-wifi-placa-base-am5-atx-26223.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 224.9,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "coolmod": {
    "historial": [
@@ -542,10 +545,10 @@
    ],
    "stock": true,
    "url": "https://www.coolmod.com/asus-tuf-gaming-b850-plus-wifi-socket-am5/",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 199.95,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "pcbox": {
    "historial": [
@@ -572,10 +575,10 @@
    ],
    "stock": true,
    "url": "https://www.pcbox.com/90mb1j30-m0eay0-placa-base-asus-tuf-gaming--b850-plus-wifi-pci-e-x16-gen5--m-2-/p",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 234.15,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "ldlc": {
    "historial": [
@@ -586,10 +589,10 @@
    ],
    "stock": true,
    "url": "https://www.ldlc.com/es-es/ficha/PB00659304.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 238.95,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   }
  },
  "ssd": {
@@ -602,23 +605,25 @@
     [
      "2026-10-12T10:55+00:00",
      353.24
+    ],
+    [
+     "2026-10-20T08:36+00:00",
+     440.68
     ]
    ],
-   "fuente": "proxy",
+   "fuente": "directo",
    "url": "https://www.amazon.es/dp/B0DGHB9V34",
-   "comprobado": "2026-10-20T00:23+00:00",
-   "error": "proxy sin respuesta",
-   "precio": null,
-   "fecha_precio": "2026-10-12T10:55+00:00",
-   "origen": "ES",
-   "ultimo": 353.24,
-   "ultimo_fecha": "2026-10-12T10:55+00:00"
+   "comprobado": "2026-10-20T08:36+00:00",
+   "error": null,
+   "precio": 440.68,
+   "fecha_precio": "2026-10-20T08:36+00:00",
+   "origen": "fuera"
   },
   "pccomponentes": {
    "historial": [],
    "stock": null,
    "url": "https://www.pccomponentes.com/disco-duro-samsung-990-evo-plus-2tb-disco-ssd-7250mb-s-nvme-pcie-5-0-x2-nvme-2-0-nand",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": "protegido (Cloudflare)",
    "precio": null
   },
@@ -635,10 +640,10 @@
    ],
    "stock": true,
    "url": "https://www.neobyte.es/samsung-990-evo-plus-2tb-pcie-50-unidad-ssd-m2-26121.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 339.89,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "coolmod": {
    "historial": [
@@ -709,10 +714,10 @@
    ],
    "stock": true,
    "url": "https://www.coolmod.com/samsung-990-evo-plus-series-2tb-pcie-gen4-x4-nvme-ssd/",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 464.95,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "pcbox": {
    "historial": [
@@ -723,10 +728,10 @@
    ],
    "stock": true,
    "url": "https://www.pcbox.com/product/mz-v9s2t0bw-disco-duro-ssd-2000gb-m-2--samsung-mz-v9s2t0-7150mb-s-pci-express-4",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 397.4,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "alternate": {
    "historial": [
@@ -737,10 +742,10 @@
    ],
    "stock": true,
    "url": "https://www.alternate.es/Samsung/990-EVO-Plus-2-TB-Unidad-de-estado-s%C3%B3lido/html/product/100080170",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 381.0,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "ldlc": {
    "historial": [
@@ -751,10 +756,10 @@
    ],
    "stock": true,
    "url": "https://www.ldlc.com/es-es/ficha/PB00653108.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 387.95,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   }
  },
  "case": {
@@ -763,17 +768,19 @@
     [
      "2026-10-04T02:34+00:00",
      89.99
+    ],
+    [
+     "2026-10-20T08:36+00:00",
+     108.89
     ]
    ],
    "fuente": "directo",
    "url": "https://www.amazon.es/dp/B0F49555MM",
-   "comprobado": "2026-10-20T00:23+00:00",
-   "error": "no visible desde fuera de España (US)",
-   "precio": null,
-   "fecha_precio": "2026-10-12T10:55+00:00",
-   "origen": "ES",
-   "ultimo": 89.99,
-   "ultimo_fecha": "2026-10-12T10:55+00:00"
+   "comprobado": "2026-10-20T08:36+00:00",
+   "error": null,
+   "precio": 108.89,
+   "fecha_precio": "2026-10-20T08:36+00:00",
+   "origen": "fuera"
   }
  },
  "psu": {
@@ -794,21 +801,25 @@
     [
      "2026-10-08T01:02+00:00",
      56.99
+    ],
+    [
+     "2026-10-20T08:36+00:00",
+     68.96
     ]
    ],
    "fuente": "directo",
    "url": "https://www.amazon.es/dp/B0CK8NDN1Q",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
-   "precio": 56.99,
-   "fecha_precio": "2026-10-20T00:23+00:00",
+   "precio": 68.96,
+   "fecha_precio": "2026-10-20T08:36+00:00",
    "origen": "fuera"
   },
   "pccomponentes": {
    "historial": [],
    "stock": null,
    "url": "https://www.pccomponentes.com/corsair-cx650-650-w-80-plus-bronze",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": "protegido (Cloudflare)",
    "precio": null
   },
@@ -821,10 +832,10 @@
    ],
    "stock": false,
    "url": "https://www.neobyte.es/corsair-cx650-80-bronze-fuente-de-alimentacion-650w-19295.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 64.9,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "coolmod": {
    "historial": [
@@ -835,10 +846,10 @@
    ],
    "stock": true,
    "url": "https://www.coolmod.com/corsair-cx650-80-plus-bronze-650w/",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 75.95,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "pcbox": {
    "historial": [
@@ -849,10 +860,10 @@
    ],
    "stock": false,
    "url": "https://www.pcbox.com/cp-9020278-eu-fuente-aliment--corsair-cx-series-cx650-650w-80--bronze-cp-902027/p",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 76.87,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   },
   "ldlc": {
    "historial": [
@@ -863,10 +874,10 @@
    ],
    "stock": true,
    "url": "https://www.ldlc.com/es-es/ficha/PB00580851.html",
-   "comprobado": "2026-10-20T00:23+00:00",
+   "comprobado": "2026-10-20T08:36+00:00",
    "error": null,
    "precio": 62.95,
-   "fecha_precio": "2026-10-20T00:23+00:00"
+   "fecha_precio": "2026-10-20T08:36+00:00"
   }
  }
 }
